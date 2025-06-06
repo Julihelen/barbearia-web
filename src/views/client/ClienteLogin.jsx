@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import MenuSistema from '../../MenuSistema';
-import axios from 'axios';
+import { Link } from 'react-router-dom';import axios from 'axios';
 
 
 const LoginForm = () => (
@@ -25,8 +25,8 @@ const LoginForm = () => (
         </Segment>
       </Form>
       <Message>
-        Não é um cliente cadastrado? <a href='CadastroCliente.jsx'>Cadastre-se</a>
-      </Message>
+  Não é um cliente cadastrado? <Link to="/form-cliente">Cadastre-se</Link>
+</Message>
     </Grid.Column>
   </Grid>
 )
