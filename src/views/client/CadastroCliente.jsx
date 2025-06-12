@@ -4,7 +4,6 @@ import MenuSistema from '../../MenuSistema';
 import axios from "axios";
 
 
-
 // Função para salvar os dados
 function CadastroCliente() {
   const [nome, setNome] = useState();
