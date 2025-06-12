@@ -8,7 +8,7 @@ import axios from 'axios';
 const LoginForm = () => (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as='h2' color='brown' textAlign='center'> Faça seu login </Header>
+      <Header as='h2' color='white' textAlign='center'> Faça seu login </Header>
       <Form size='medium'>
         <Segment stacked>
           <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
