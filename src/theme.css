@@ -1,14 +1,17 @@
 body{
-  background-color: #1D1506;
+  background-color: #1D1506 !important;
   
 }
-
 
 .ui.button {
   background-color: #C78E58 !important;
   color: white !important;
 }
 
-.ui.header {
+/*.ui.header {
+  background-color: #C78E58 !important;
   font-family: 'Roboto', sans-serif !important;
+  color: white !important;
+  font-weight: bold !important;
 }
+*/
