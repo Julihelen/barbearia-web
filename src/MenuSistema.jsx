@@ -24,7 +24,12 @@ function MenuSistema(props) {
       <Menu.Menu position="right">
         <Dropdown item text="Serviços ">
           <Dropdown.Menu>
-            <Dropdown.Item text="Consultar serviços" />
+            <Dropdown.Item
+              text="Consultar serviços"
+              active={props.tela === "Consultar serviços"}
+              as={Link}
+              to="/consultar-servicos"
+            />
             <Dropdown.Item
               text="Agendar serviço"
               active={props.tela === "Agendar serviço"}

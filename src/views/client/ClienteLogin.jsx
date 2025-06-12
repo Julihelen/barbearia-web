@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import MenuSistema from '../../MenuSistema';
-import { Link } from 'react-router-dom';import axios from 'axios';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 const LoginForm = () => (

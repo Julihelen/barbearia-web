@@ -1,8 +1,10 @@
 import { Segment, Menu } from 'semantic-ui-react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Rotas from './Rotas';
 import 'semantic-ui-css/semantic.min.css'; 
 import './theme.css';
+
 
 
 function App() {
