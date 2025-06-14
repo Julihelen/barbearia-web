@@ -32,4 +32,4 @@ const LoginForm = () => (
   </Grid>
 )
 
-export default LoginForm
+export default LoginForm;
