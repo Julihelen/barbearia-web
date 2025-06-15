@@ -45,6 +45,13 @@ function MenuSistema(props) {
             as={Link}
             to="/login-cliente"
           />
+          <Menu.Item
+            name="Cadastre-se"
+            content="Cadastre-se"
+            active={props.tela === "Cadastre-se"}
+            as={Link}
+            to="/form-cliente"
+          />
         </Menu.Item>
       </Menu.Menu>
     </Menu>

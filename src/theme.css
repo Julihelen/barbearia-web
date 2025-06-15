@@ -16,3 +16,8 @@ body{
 .ui.menu {
   background-color: #C78E58 !important;
 }
+
+.ui.login-form {
+  background-color: #1D1506 !important;
+  color: #ffffff !important;
+}

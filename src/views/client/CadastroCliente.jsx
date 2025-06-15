@@ -16,7 +16,7 @@ function CadastroCliente() {
 
 
 
-  function salvar() {
+  function salvar() { // função provisória para alertar ao cliente quando aos dados o usuário não preencher todos os campos obrigatórios
     if (!nome || !cpf || !email || !senha) {
       alert("Preencha todos os campos obrigatórios.");
       return; 
@@ -61,7 +61,7 @@ function CadastroCliente() {
 
   return (
     <>
-      <h1 className="ui header">Barbearia Chefe </h1>
+      
       <MenuSistema tela={'cliente'} />
       <div className="ui container">
         <Grid stackable centered>

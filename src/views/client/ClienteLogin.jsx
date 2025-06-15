@@ -6,30 +6,36 @@ import axios from 'axios';
 
 
 const LoginForm = () => (
-  <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as='h2' color='white' textAlign='center'> Faça seu login </Header>
-      <Form size='medium'>
-        <Segment stacked>
-          <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-          <Form.Input
-            fluid
-            icon='lock'
-            iconPosition='left'
-            placeholder='Senha'
-            type='senha'
-          />
+  <>
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid.Column style={{ maxWidth: 370 }}>
+        <Header as='h2' color='white' textAlign='center'> Faça seu login </Header>
+        <Form size='medium'>
+          <Segment stacked>
+            <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+            <Form.Input
+              fluid
+              icon='lock'
+              iconPosition='left'
+              placeholder='Senha'
+              type='senha'
+            />
 
-          <Button color='brown' fluid size='large'>
-            Login
-          </Button>
-        </Segment>
-      </Form>
-      <Message>
-  Não é um cliente cadastrado? <Link to="/form-cliente">Cadastre-se</Link>
-</Message>
-    </Grid.Column>
-  </Grid>
+            <Button color='brown' fluid size='large'>
+              Login
+            </Button>
+          </Segment>
+        </Form>
+        <Message>
+          Não é um cliente cadastrado? <Link to="/form-cliente">Cadastre-se</Link>
+        </Message>
+      </Grid.Column>
+    </Grid>
+    <button class="ui left labeled icon button">
+      <i class="left arrow icon"></i>
+      <Link to="/home"> Voltar </Link> //Link não funciona, mas é um exemplo//
+    </button>
+  </>
 )
 
 export default LoginForm;
