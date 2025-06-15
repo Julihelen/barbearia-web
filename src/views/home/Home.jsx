@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Container, Grid, Image, Step,GridRow,GridColumn, Rating,Pagination } from 'semantic-ui-react';
+import { Container, Grid, Image, Step,GridRow,GridColumn, Rating,Pagination, } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
 import '../../theme.css'; 
 

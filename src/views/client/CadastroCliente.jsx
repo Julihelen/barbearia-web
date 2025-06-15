@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Grid, Icon  } from 'semantic-ui-react';
+import { Form, Button, Grid, Icon, Header  } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
 import axios from "axios";
 
@@ -17,8 +17,12 @@ function CadastroCliente() {
 
 
   function salvar() {
+    if (!nome || !cpf || !email || !senha) {
+      alert("Preencha todos os campos obrigatórios.");
+      return; 
+    }
 
-		let clienteRequest = {
+    let clienteRequest = {
         nome: nome,
         dataNascimento: dataNascimento,
         cpf: cpf,
@@ -26,18 +30,18 @@ function CadastroCliente() {
         foneCelular: foneCelular,
         email: email,
         senha: senha
-		}
+    }
     
     //faz o post para o banco
-		axios.post("http://localhost:8080/api/cliente", clienteRequest)
+    axios.post("http://localhost:8080/api/cliente", clienteRequest)
     // exceção caso não funcione
-		.then((response) => {
-		     console.log('Cliente cadastrado com sucesso.')
-		})
-		.catch((error) => {
-		     console.log('Erro ao incluir o um cliente.')
-		})
-	}
+    .then((response) => {
+         console.log('Cliente cadastrado com sucesso.')
+    })
+    .catch((error) => {
+         console.log('Erro ao incluir o um cliente.')
+    })
+  }
 
   // function formatarData(isoDate) {
   //   if (!isoDate) return '';
@@ -57,6 +61,7 @@ function CadastroCliente() {
 
   return (
     <>
+      <h1 className="ui header">Barbearia Chefe </h1>
       <MenuSistema tela={'cliente'} />
       <div className="ui container">
         <Grid stackable centered>
