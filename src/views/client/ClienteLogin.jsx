@@ -31,7 +31,7 @@ const LoginForm = () => (
         Não é um cliente cadastrado? <Link to="/form-cliente">Cadastre-se</Link>
       </Message>
 
-      <Button as={Link} to="/home" icon='left arrow' labelPosition='left' color='grey' style={{ marginTop: '1em' }}>
+      <Button as={Link} to="/" icon='left arrow' labelPosition='left' color='grey' style={{ marginTop: '1em' }}>
         Voltar
       </Button>
     </Grid.Column>

@@ -16,6 +16,11 @@ body{
   color: white !important;
 }
 
+.ui.cards{
+  width: 15% !important;
+  margin: 28px !important;
+  height: auto;
+}
 .ui.menu {
   background-color: #C78E58 !important;
 }
