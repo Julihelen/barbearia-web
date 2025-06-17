@@ -1,41 +1,41 @@
-import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import MenuSistema from '../../MenuSistema';
+import React from 'react';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-
 
 const LoginForm = () => (
-  <>
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-      <Grid.Column style={{ maxWidth: 370 }}>
-        <Header as='h2' color='white' textAlign='center'> Faça seu login </Header>
-        <Form size='medium'>
-          <Segment stacked>
-            <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-            <Form.Input
-              fluid
-              icon='lock'
-              iconPosition='left'
-              placeholder='Senha'
-              type='senha'
-            />
+  <Grid
+    textAlign='center'
+    verticalAlign='middle'
+    style={{ minHeight: 'calc(100vh - 200px)' }} // Altura total menos menu e footer
+  >
+    <Grid.Column style={{ maxWidth: 370 }}>
+      <Header as='h2' color='brown' textAlign='center'>
+        Faça seu login
+      </Header>
+      <Form size='medium'>
+        <Segment stacked>
+          <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+          <Form.Input
+            fluid
+            icon='lock'
+            iconPosition='left'
+            placeholder='Senha'
+            type='password'
+          />
+          <Button color='brown' fluid size='large'>
+            Login
+          </Button>
+        </Segment>
+      </Form>
+      <Message>
+        Não é um cliente cadastrado? <Link to="/form-cliente">Cadastre-se</Link>
+      </Message>
 
-            <Button color='brown' fluid size='large'>
-              Login
-            </Button>
-          </Segment>
-        </Form>
-        <Message>
-          Não é um cliente cadastrado? <Link to="/form-cliente">Cadastre-se</Link>
-        </Message>
-      </Grid.Column>
-    </Grid>
-    <button class="ui left labeled icon button">
-      <i class="left arrow icon"></i>
-      <Link to="/home"> Voltar </Link> //Link não funciona, mas é um exemplo//
-    </button>
-  </>
-)
+      <Button as={Link} to="/home" icon='left arrow' labelPosition='left' color='grey' style={{ marginTop: '1em' }}>
+        Voltar
+      </Button>
+    </Grid.Column>
+  </Grid>
+);
 
 export default LoginForm;

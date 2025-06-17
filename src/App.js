@@ -1,29 +1,28 @@
-import { Segment, Menu } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import FooterSistema from "./FooterSistema";
 import Rotas from './Rotas';
-import 'semantic-ui-css/semantic.min.css'; 
+import 'semantic-ui-css/semantic.min.css';
 import './theme.css';
 
 
 
 function App() {
 
-return (
-  <>
-    <div className="App">
-      
-      <Rotas /> {/*Importando as rotas*/}
+  return (
+    <>
+      <div className="App">
 
-      <div style={{marginTop: '9%'}}>
-        <Segment vertical color='grey' size='tiny' textAlign='center'>
-          &copy; 2025 - Barbearia Chefe - IFPE Jaboatão dos Guararapes
-        </Segment>
+        <Rotas /> {/*Importando as rotas*/}
+
+        <div style={{ marginTop: '9%' }}>
+          <FooterSistema />
+
+        </div>
       </div>
-
-    </div>
-  </>
-);
+    </>
+  );
 }
 
 export default App;

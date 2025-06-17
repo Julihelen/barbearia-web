@@ -2,7 +2,10 @@ body{
   background-color: #1D1506 !important;
   
 }
-
+.ui.segment {
+  background-color: #C78E58 !important;
+  color: #ffffff !important;
+}
 .h2{
   color: #ffffff !important;
   font-family: 'Roboto', sans-serif !important;
@@ -20,4 +23,10 @@ body{
 .ui.login-form {
   background-color: #1D1506 !important;
   color: #ffffff !important;
+}
+
+.ui.segment{
+  background-color: #C78E58 !important;
+  color: #ffffff !important;
+  font-family: 'Roboto', sans-serif !important;
 }
