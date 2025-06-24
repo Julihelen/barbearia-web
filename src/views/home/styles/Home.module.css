@@ -1,0 +1,191 @@
+/* Home.module.css */
+
+.homeContainer {
+  background-color: #0a0803; /* Dark brown almost black */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding-top: 5em; /* Adjust based on header height */
+  padding-bottom: 5em; /* Adjust for footer */
+}
+
+/* Header Styles */
+.headerMenu {
+  background-color: #0a0803 !important; /* Dark brown almost black */
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 1em 0;
+  border-bottom: 1px solid rgba(187, 135, 46, 0.3) !important; /* Burnt gold subtle line */
+}
+
+.logoText {
+  font-family: 'Palatino', 'Palatino Linotype', 'Book Antiqua', serif;
+  color: #bb872e !important;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.logoWrapper {
+  padding: 0 !important;
+}
+
+
+.menuItem {
+  color: #ffffff !important; /* Light color for contrast */
+  font-weight: 500 !important;
+  font-size: 1.1em !important;
+  transition: color 0.3s ease;
+}
+
+.menuItem:hover {
+  color: #bb872e !important; /* Burnt gold on hover */
+}
+
+.bookNowButton {
+  color: #bb872e !important; /* Dark text for contrast */
+  font-weight: bold !important;
+  border: 1px solid #bb872e;
+  border-color: #bb872e;
+  border-radius: 5px !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bookNowButton:hover {
+  background-color: #d19f4a !important; /* Lighter burnt gold on hover */
+  color: #0a0803 !important;
+}
+
+
+
+/* Hero Section Styles */
+.heroSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; /* Adjust height as needed */
+  background-image: url('../../../../public/hero_background.jpg'); /* Placeholder, replace with your hero image */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4em;
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  z-index: 1;
+}
+
+.heroContent {
+  text-align: center;
+  z-index: 2;
+  color: #bb872e;
+}
+
+.heroTitle {
+  font-size: 3.5em !important;
+  font-weight: bold !important;
+  color: #bb872e !important; /* White/light text */
+  margin-bottom: 0.2em !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.heroButtons {
+  margin-top: 2em;
+}
+
+.heroButtons .button:first-child {
+  margin-right: 1.5em;
+}
+
+.viewServicesButton {
+  border-color: #bb872e !important; /* Burnt gold border */
+  color: #bb872e !important; /* Burnt gold text */
+  background-color: transparent !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.viewServicesButton:hover {
+  background-color: #bb872e !important; /* Burnt gold background on hover */
+  color: #0a0803 !important; /* Dark text on hover */
+}
+
+/* Carousel Section Styles */
+.carouselSection {
+  padding: 3em 0;
+  background-color: #0a0803; /* Dark background */
+  text-align: center;
+}
+
+.carouselImage {
+  border: 3px solid #bb872e !important; /* Burnt gold border */
+  border-radius: 5px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  width: 100%;
+  height: 250px; /* Fixed height for consistency */
+  object-fit: cover; /* Ensures images cover the area */
+}
+
+.carouselImage:hover {
+  transform: scale(1.03);
+}
+
+.carouselArrow {
+  color: #bb872e !important; /* Burnt gold arrows */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.carouselArrow:hover {
+  color: #d19f4a !important; /* Lighter burnt gold on hover */
+}
+
+/* Footer Styles */
+.footerSegment {
+  background-color: #0a0803 !important; /* Dark brown almost black */
+  padding: 3em 0;
+  border-top: 1px solid rgba(187, 135, 46, 0.3) !important; /* Subtle burnt gold line */
+  margin-top: 4em !important;
+}
+
+.footerHeader {
+  color: #bb872e !important; /* Burnt gold for headers */
+  font-weight: bold !important;
+  margin-bottom: 1em !important;
+}
+
+.footerText,
+.footerLink {
+  color: #f0f0f0 !important; /* Light text for readability */
+  font-size: 1em !important;
+  line-height: 1.8em;
+}
+
+.footerLink:hover {
+  color: #bb872e !important; /* Burnt gold on hover */
+}
+
+.socialIcon {
+  margin-right: 0.5em !important;
+  color: #bb872e !important; /* Burnt gold for social icons */
+}
+
+.copyrightText {
+  text-align: center;
+  color: #777 !important; /* Muted color for copyright */
+  margin-top: 2em;
+  font-size: 0.9em;
+}
