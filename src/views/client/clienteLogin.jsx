@@ -1,3 +1,5 @@
+
+import MenuSistema from "../../components/Menu";
 import React from "react";
 import {
   Button,
@@ -9,7 +11,14 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-const LoginForm = () => (
+    
+
+function LoginForm(){
+
+  return (
+    <><MenuSistema tela="Cadastro Cliente" />
+
+
   <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as="h2" color="brown" textAlign="center">
@@ -51,7 +60,8 @@ const LoginForm = () => (
         Voltar
       </Button>
     </Grid.Column>
-  </Grid>
-);
+  </Grid></>
+  );
+}
 
 export default LoginForm;

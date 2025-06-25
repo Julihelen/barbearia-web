@@ -39,11 +39,61 @@ const MenuSistema = ({ tela }) => {
           </Dropdown>
 
           <Menu.Item name='Sobre' className={styles.menuItem} />
-          <Menu.Item name='Avaliações' className={styles.menuItem} />
+
+
+         <Dropdown item text="Conta">
+   <Dropdown.Menu >
+     <Dropdown.Item
+       text="Faça seu login"
+       active={tela === "Login"}
+       as={Link}
+       to="/clienteLogin"
+     />
+
+     <Dropdown.Item
+   text="Faça seu Cadastro"
+   active={tela === "Cadastro"}
+   as={Link}
+   to="/cadastroCliente"
+  className={styles.dropdown}
+
+ />
 
 
 
-          <Menu.Item name='Conta' className={styles.menuItem} />
+   </Dropdown.Menu>
+
+
+   
+ </Dropdown>
+
+
+
+         <Dropdown item text="Avaliações">
+   <Dropdown.Menu >
+
+     <Dropdown.Item
+   text="Faça sua avaliação"
+   active={tela === "Avaliacao"}
+   as={Link}
+   to="/formAvaliacao"
+  className={styles.dropdown}/>
+   </Dropdown.Menu>
+
+
+   
+ </Dropdown>
+
+
+
+
+
+
+
+
+
+
+
 
 
           <Menu.Item name='Agendar Agora' className={styles.bookNowButton}>
