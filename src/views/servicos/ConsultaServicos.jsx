@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Header } from 'semantic-ui-react';
+import { Header, Card, Button, Icon } from 'semantic-ui-react';
 import MenuSistema from '../../components/Menu';
 
 const servicos = [
@@ -10,30 +10,30 @@ const servicos = [
     { id: 7, nome: 'Sobrancelha', descricao: 'Técnicas de epilação rápida e eficaz', preco: 'R$ 35,00' },
 ];
 
-
 function ConsultaServicos() {
     return (
         <>
-        <MenuSistema tela="Consultar serviços" />
-        <div style={{ paddingTop: '80px' }}>
-            <Header as="h2" dividing> Nossos serviços </Header>
-            <div className="ui cards">
-                {servicos.map(servico => (
-                    <div className="card" key={servico.id}>
-                        <div className="content">
-                            <div className="header">{servico.nome}</div>
-                            <div className="description">
-                                {servico.descricao}
-                            </div>
-                        </div>
-                        <div className="ui bottom attached button">
-                            <i className="add shopping cart icon"> </i>
-                            {servico.preco}
-                        </div>
-                    </div>
-                ))}
+            <MenuSistema tela="Consultar serviços" />
+            <div className="container-servicos">
+                <Header as="h2" dividing style={{ color: '#bb872e', fontFamily: 'Palatino, Palatino Linotype, Book Antiqua, serif' }}>
+                    Nossos serviços
+                </Header>
+                <Card.Group centered>
+                    {servicos.map(servico => (
+                        <Card key={servico.id}>
+                            <Card.Content>
+                                <Card.Header>{servico.nome}</Card.Header>
+                                <Card.Description>{servico.descricao}</Card.Description>
+                            </Card.Content>
+                            <Button attached="bottom">
+                                <Icon name="add shopping cart" />
+                                {servico.preco}
+                            </Button>
+                        </Card>
+                    ))}
+                </Card.Group>
             </div>
-        </div></>
+        </>
     );
 }
 

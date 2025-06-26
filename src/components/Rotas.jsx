@@ -19,6 +19,7 @@ function Rotas() {
       <Route path="ClienteLogin" element={<ClienteLogin />} />
       <Route path="consultarServicos" element={<ConsultaServicos />} />
       <Route path="formAvaliacao" element={<Avaliacao />} />
+      
     </Routes>
   );
 }

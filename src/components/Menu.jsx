@@ -1,4 +1,4 @@
-import { Menu, Container,  Dropdown, Button } from 'semantic-ui-react';
+import { Menu, Container, Dropdown, Button } from 'semantic-ui-react';
 import styles from '../views/home/styles/Home.module.css';
 import { Link } from "react-router-dom";
 
@@ -7,27 +7,27 @@ const MenuSistema = ({ tela }) => {
   return (
     <Menu inverted borderless className={styles.headerMenu}>
       <Container>
-        <Menu.Item 
-          header 
+        <Menu.Item
+          header
           as={Link}
           to="/"
           className={styles.logoWrapper}
         >
           <span className={styles.logoText}>
-            BARBEARIA
+            BARBEARIA CHEFE
           </span>
         </Menu.Item>
-        
+
         <Menu.Menu position='right'>
-         
+
           <Dropdown item text="Serviços">
             <Dropdown.Menu >
               <Dropdown.Item
-                text="Consultar serviços" 
+                text="Consultar serviços"
                 active={tela === "Consultar serviços"}
                 as={Link}
                 to="/consultarServicos"
-                 className={styles.dropdown}
+                className={styles.dropdown}
               />
               <Dropdown.Item
                 text="Agendar serviço"
@@ -41,62 +41,49 @@ const MenuSistema = ({ tela }) => {
           <Menu.Item name='Sobre' className={styles.menuItem} />
 
 
-         <Dropdown item text="Conta">
-   <Dropdown.Menu >
-     <Dropdown.Item
-       text="Faça seu login"
-       active={tela === "Login"}
-       as={Link}
-       to="/clienteLogin"
-     />
+          <Dropdown item text="Conta">
+            <Dropdown.Menu >
+              <Dropdown.Item
+                text="Login"
+                active={tela === "Login"}
+                as={Link}
+                to="/clienteLogin"
+              />
 
-     <Dropdown.Item
-   text="Faça seu Cadastro"
-   active={tela === "Cadastro"}
-   as={Link}
-   to="/cadastroCliente"
-  className={styles.dropdown}
+              <Dropdown.Item
+                text="Cadastro"
+                active={tela === "Cadastro"}
+                as={Link}
+                to="/cadastroCliente"
+                className={styles.dropdown}
 
- />
-
-
-
-   </Dropdown.Menu>
-
-
-   
- </Dropdown>
+              />
 
 
 
-         <Dropdown item text="Avaliações">
-   <Dropdown.Menu >
-
-     <Dropdown.Item
-   text="Faça sua avaliação"
-   active={tela === "Avaliacao"}
-   as={Link}
-   to="/formAvaliacao"
-  className={styles.dropdown}/>
-   </Dropdown.Menu>
-
-
-   
- </Dropdown>
+            </Dropdown.Menu>
 
 
 
+          </Dropdown>
 
 
 
+          <Dropdown item text="Avaliações">
+            <Dropdown.Menu >
+
+              <Dropdown.Item
+                text="Faça sua avaliação"
+                active={tela === "Avaliacao"}
+                as={Link}
+                to="/formAvaliacao"
+                className={styles.dropdown} />
+            </Dropdown.Menu>
 
 
 
-
-
-
-
-          <Menu.Item name='Agendar Agora' className={styles.bookNowButton}>
+          </Dropdown>
+          <Menu.Item as={Link} to="/formAgendamento" className={styles.bookNowButton}>
             Agendar Agora
           </Menu.Item>
         </Menu.Menu>
