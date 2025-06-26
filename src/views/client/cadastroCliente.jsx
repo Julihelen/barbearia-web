@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Grid, Icon, Header } from 'semantic-ui-react';
+import { Form, Button, Grid, Icon, Header, Image } from 'semantic-ui-react';
 import axios from 'axios';
 import MenuSistema from "../../components/Menu";
 
@@ -46,6 +46,7 @@ function CadastroCliente() {
       >
         <Grid.Column mobile={16} tablet={10} computer={8}>
           <Header as="h2" textAlign="center" style={{ color: "#bb872e" }}>
+            <center> <Image src='/logoprovisorio.png' size='medium' /> </center>
             Cadastre-se
           </Header>
           <Form className="ui form">
