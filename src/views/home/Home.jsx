@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './styles/Home.module.css';
 import { Container, Embed } from 'semantic-ui-react';
 import MenuSistema from '../../components/Menu';
@@ -16,28 +15,14 @@ const Home = () => {
         <HeroSection />
         <CarouselSection />
       </Container>
-
-
- <Embed
-    id='lCNZbfCgTcw'
-    placeholder='/carousel1.jpg'
-    source='youtube'
-    style={{ width: '2000px', height: '50px', border: '2px solid #000',      borderRadius: '10px',
-
- }} 
-  />
-
-
-
       <Footer />
-
-
-
-
-
     </div></>
   );
   
 };
+ // id='lCNZbfCgTcw'
+  // placeholder='/carousel1.jpg'
+  // source='youtube'
+  // style={{ width: '2000px', height: '50px', border: '2px solid #000',      borderRadius: '10px',
 
 export default Home;

@@ -56,22 +56,14 @@ const MenuSistema = ({ tela }) => {
                 as={Link}
                 to="/cadastroCliente"
                 className={styles.dropdown}
-
               />
-
-
-
             </Dropdown.Menu>
-
-
-
           </Dropdown>
 
 
 
           <Dropdown item text="Avaliações">
             <Dropdown.Menu >
-
               <Dropdown.Item
                 text="Faça sua avaliação"
                 active={tela === "Avaliacao"}
@@ -79,13 +71,24 @@ const MenuSistema = ({ tela }) => {
                 to="/formAvaliacao"
                 className={styles.dropdown} />
             </Dropdown.Menu>
-
-
-
           </Dropdown>
-          <Menu.Item as={Link} to="/formAgendamento" className={styles.bookNowButton}>
+          <Menu.Item 
+            as={Link}
+            to="/consultarServicos" 
+            className={styles.bookNowButton}>
             Agendar Agora
           </Menu.Item>
+
+         {/* <Menu.Item
+         className={styles.carrinho}>
+          <div class="ui vertical button" tabindex="0">
+            <div >
+              <i 
+                class="shop icon">
+              </i>
+            </div>
+          </div>
+         </Menu.Item> */}
         </Menu.Menu>
       </Container>
     </Menu>

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Header, Card, Button, Icon } from 'semantic-ui-react';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
+import axios from "axios";
 
 const servicos = [
     { id: 1, nome: 'Corte de Cabelo', descricao: 'Corte clássico', preco: 'R$ 40,00' },
@@ -13,7 +14,20 @@ const servicos = [
     ,
 ];
 
-function ConsultaServicos() {
+export default function ListServicos () {
+    const [servicos, setServicos] = useState([]);
+    useEffect(() => {
+        carregarServicos();
+   }, [])
+
+   function carregarServicos() {
+
+        axios.get("http://localhost:8080/api/servicos")
+        .then((response) => {
+           setServicos(response.data)
+        })
+    }
+
     return (
         <>
             <Menu tela="Consultar serviços" />
@@ -25,7 +39,7 @@ function ConsultaServicos() {
                     {servicos.map(servico => (
                         <Card key={servico.id}>
                             <Card.Content>
-                                <Card.Header>{servico.nome}</Card.Header>
+                                <Card.Header>{servico.titulo}</Card.Header>
                                 <Card.Description>{servico.descricao}</Card.Description>
                             </Card.Content>
                             <Button attached="bottom">
@@ -41,4 +55,4 @@ function ConsultaServicos() {
     );
 }
 
-export default ConsultaServicos;
+
