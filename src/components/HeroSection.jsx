@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Button, Header as SemanticHeader } from 'semantic-ui-react';
 import styles from '../views/home/styles/Home.module.css';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -13,12 +14,18 @@ const HeroSection = () => {
           AGENDE SEU HORÁRIO.
         </SemanticHeader>
         <div className={styles.heroButtons}>
-          <Button size='huge' className={styles.bookNowButton}>
+          
+          <Link to="/formAgendamento"   >
+          <Button size='huge' className={styles.bookNowButton} >
             AGENDAR AGORA
           </Button>
+          </Link>
+
+          <Link to="/ConsultarServicos">
           <Button size='huge' basic inverted className={styles.viewServicesButton}>
             VER SERVIÇOS
           </Button>
+          </Link>
         </div>
       </Container>
     </div>

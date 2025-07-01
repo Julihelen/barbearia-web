@@ -79,6 +79,28 @@ const MenuSistema = ({ tela }) => {
             Agendar Agora
           </Menu.Item>
 
+
+
+         <Dropdown item text="Admin">
+   <Dropdown.Menu >
+     <Dropdown.Item
+       text="Agendamentos"
+       active={tela === "admin"}
+       as={Link}
+       to="/agendamentos"
+       className={styles.dropdown} />
+   </Dropdown.Menu>
+ </Dropdown>
+
+
+
+
+
+
+
+
+
+
          {/* <Menu.Item
          className={styles.carrinho}>
           <div class="ui vertical button" tabindex="0">

@@ -7,6 +7,8 @@ import CadastroBarbeiro from "../views/admin/cadastroBarbeiro";
 import ClienteLogin from "../views/client/clienteLogin";
 import ConsultaServicos from "../views/servicos/ConsultaServicos";
 import Avaliacao from "../views/client/formAvaliacao"
+import Agendamentos from "../views/admin/agendamentos"
+
 
 
 function Rotas() {
@@ -19,6 +21,8 @@ function Rotas() {
       <Route path="ClienteLogin" element={<ClienteLogin />} />
       <Route path="consultarServicos" element={<ConsultaServicos />} />
       <Route path="formAvaliacao" element={<Avaliacao />} />
+      <Route path="agendamentos" element={<Agendamentos />} />
+
       
     </Routes>
   );

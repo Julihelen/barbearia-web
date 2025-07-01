@@ -20,9 +20,9 @@ const Home = () => {
   );
   
 };
- // id='lCNZbfCgTcw'
-  // placeholder='/carousel1.jpg'
-  // source='youtube'
-  // style={{ width: '2000px', height: '50px', border: '2px solid #000',      borderRadius: '10px',
+
+
+
+
 
 export default Home;
