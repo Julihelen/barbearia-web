@@ -4,16 +4,6 @@ import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 import axios from "axios";
 
-const servicos = [
-    { id: 1, nome: 'Corte de Cabelo', descricao: 'Corte clássico', preco: 'R$ 40,00' },
-    { id: 2, nome: 'Barba', descricao: 'Modelagem e hidratação', preco: 'R$ 25,00' },
-    { id: 3, nome: 'Corte + Barba', descricao: 'Combo completo', preco: 'R$ 60,00' },
-    { id: 5, nome: 'Hidratação Capilar', descricao: 'Tratamento para cabelos secos', preco: 'R$ 50,00' },
-    { id: 7, nome: 'Sobrancelha', descricao: 'Técnicas de epilação rápida e eficaz', preco: 'R$ 35,00' },
-
-    ,
-];
-
 export default function ListServicos () {
     const [servicos, setServicos] = useState([]);
     useEffect(() => {

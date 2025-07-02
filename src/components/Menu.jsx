@@ -1,4 +1,4 @@
-import { Menu, Container, Dropdown, Button } from 'semantic-ui-react';
+import { Menu, Container, Dropdown, Button, Icon  } from 'semantic-ui-react';
 import styles from '../views/home/styles/Home.module.css';
 import { Link } from "react-router-dom";
 
@@ -79,16 +79,11 @@ const MenuSistema = ({ tela }) => {
             Agendar Agora
           </Menu.Item>
 
-         {/* <Menu.Item
-         className={styles.carrinho}>
-          <div class="ui vertical button" tabindex="0">
-            <div >
-              <i 
-                class="shop icon">
-              </i>
-            </div>
-          </div>
-         </Menu.Item> */}
+          <Menu.Item>
+            <Button basic icon className={styles.carrinhoButton}> {/* Use a classe do CSS Module */}
+              <Icon name="add shopping cart" className={styles.carrinhoIcon} /> {/* Aplique a classe ao ícone também */}
+            </Button>
+          </Menu.Item>
         </Menu.Menu>
       </Container>
     </Menu>
