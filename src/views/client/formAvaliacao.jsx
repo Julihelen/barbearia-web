@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Grid, Icon, Dropdown } from "semantic-ui-react";
+import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
 
@@ -88,11 +88,12 @@ function Avaliacao() {
           <Button onClick={cadastrar} secondary>Cadastrar</Button>
         </div> */}
 
-        <img src="/corte.jpg" alt="Corte" />
 
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
+                                      <center> <Image src='/logoprovisorio.png' size='medium' /> </center>
+              
               <h3 style={styles.title}>Avaliação de Nossos Serviços</h3>
               <Form style={styles.form}>
                 <Form.Field>
@@ -199,7 +200,7 @@ export default Avaliacao;
 const styles = {
   container: {
     minHeight: "50vh",
-    backgroundColor: "#F1DCBA",
+    backgroundColor: "black",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
