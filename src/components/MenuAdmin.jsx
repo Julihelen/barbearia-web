@@ -14,7 +14,7 @@ const MenuSistema = ({ tela = ""}) => {
           as={Link}
           to="/Home" className={styles.logoText}
           >
-          BARBEARIA
+          BARBEARIA CHEFE 
         </Menu.Item>
         
         <Menu.Menu position='right'>
@@ -87,10 +87,6 @@ const MenuSistema = ({ tela = ""}) => {
               />
             </Dropdown.Menu>
           </Dropdown>
-
-          <Menu.Item name='Dashboard' className={styles.bookNowButton}>
-            Dashboard
-          </Menu.Item> 
         </Menu.Menu>
       </Container>
     </Menu>

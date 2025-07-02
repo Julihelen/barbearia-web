@@ -9,7 +9,7 @@ import ConsultaServicos from "../views/servicos/ConsultaServicos";
 import Avaliacao from "../views/client/formAvaliacao"
 import Agendamentos from "../views/admin/agendamentos"
 import CadastroServicos from "../views/admin/cadastroServicos"
-
+import Dashboard from "../views/admin/dashboard";
 
 function Rotas() {
   return (
@@ -23,7 +23,7 @@ function Rotas() {
       <Route path="formAvaliacao" element={<Avaliacao />} />
       <Route path="agendamentos" element={<Agendamentos />} />
       <Route path="CadastroServicos" element={<CadastroServicos />} />
-
+      <Route path="Dashboard" element={<Dashboard />} />
       
     </Routes>
   );
