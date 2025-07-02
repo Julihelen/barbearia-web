@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Grid, Icon, Dropdown } from "semantic-ui-react";
+import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
 
@@ -59,10 +59,11 @@ function Agendamento() {
       observacoes,
     };
 
-    // if (!barbeiro || !nome || !dataAtendimento || !horario) {
-    //   alert("Preencha com suas informações");
-    //   return;
-    // }
+
+    if (!barbeiro || !nome || !dataAtendimento || !horario) {
+       alert("Preencha com suas informações");
+       return;
+     }
 
     axios
       .post("http://localhost:8080/api/agendamento", AgendamentoRequest)
@@ -92,11 +93,12 @@ function Agendamento() {
           <Button onClick={cadastrar} secondary>Cadastrar</Button>
         </div> */}
 
-        <img src="/corte.jpg" alt="Corte" />
 
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
+                        <center> <Image src='/logoprovisorio.png' size='medium' /> </center>
+              
               <h3 style={styles.title}>Agendamento de Serviço</h3>
               <Form style={styles.form}>
                 <Form.Field>
@@ -223,7 +225,7 @@ export default Agendamento;
 const styles = {
   container: {
     minHeight: "50vh",
-    backgroundColor: "#F1DCBA",
+    backgroundColor: "black",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",

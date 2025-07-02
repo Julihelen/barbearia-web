@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Container, Header } from "semantic-ui-react";
+import { Table, Container, Header, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
 
@@ -20,6 +20,8 @@ function Agendamentos() {
     <>
       <MenuSistema tela="admin" />
       <Container style={{ marginTop: "4em" }}>
+                  <center> <Image src='/logoprovisorio.png' size='medium' /> </center>
+        
         <Header style={{color: "white"}}  as="h2">Painel do Administrador - Agendamentos</Header>
         <Table celled striped>
           <Table.Header>
