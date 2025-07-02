@@ -11,8 +11,6 @@ import Agendamentos from "../views/admin/agendamentos"
 import CadastroServicos from "../views/admin/cadastroServicos"
 
 
-
-
 function Rotas() {
   return (
     <Routes>
@@ -25,7 +23,6 @@ function Rotas() {
       <Route path="formAvaliacao" element={<Avaliacao />} />
       <Route path="agendamentos" element={<Agendamentos />} />
       <Route path="CadastroServicos" element={<CadastroServicos />} />
-
 
       
     </Routes>

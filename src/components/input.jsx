@@ -7,4 +7,4 @@ const InputExampleInverted = () => (
   </Segment>
 )
 
-export default InputExampleInverted
+export default InputExampleInverted;

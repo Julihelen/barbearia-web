@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
 
-// AGENDAMENTO
-const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
+// Função utilitária para obter o dia da semana
 const obterDiaDaSemana = (dataStr) => {
   const dias = [
     "SUNDAY",
@@ -18,29 +17,6 @@ const obterDiaDaSemana = (dataStr) => {
   const data = new Date(dataStr);
   return dias[data.getDay()];
 };
-useEffect(() => {
-  if (!barbeiro || !dataAtendimento) return;
-
-  const diaSemana = obterDiaDaSemana(dataAtendimento);
-
-  axios
-    .get(`http://localhost:8080/api/disponibilidade/${barbeiro}`, {
-      params: { diaSemana },
-    })
-    .then((res) => {
-      const opcoes = res.data.map((hora) => ({
-        key: hora,
-        text: hora,
-        value: hora,
-      }));
-      setHorariosDisponiveis(opcoes);
-    })
-    .catch((err) => {
-      console.error("Erro ao buscar horários:", err);
-      setHorariosDisponiveis([]);
-    });
-}, [barbeiro, dataAtendimento]);
-
 
 // BARBEIRO (PARA SER DESCONTINUADO)
 const servicosOptions = [
@@ -88,6 +64,30 @@ function Agendamento() {
   const [barbeiro, setBarbeiro] = useState();
   const [observacoes, setObservacoes] = useState();
   const [fotoBarbeiro, setFotoBarbeiro] = useState(null);
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState([]); // ✅ agora dentro do componente
+
+  useEffect(() => {
+    if (!barbeiro || !dataAtendimento) return;
+
+    const diaSemana = obterDiaDaSemana(dataAtendimento);
+
+    axios
+      .get(`http://localhost:8080/api/disponibilidade/${barbeiro}`, {
+        params: { diaSemana },
+      })
+      .then((res) => {
+        const opcoes = res.data.map((hora) => ({
+          key: hora,
+          text: hora,
+          value: hora,
+        }));
+        setHorariosDisponiveis(opcoes);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar horários:", err);
+        setHorariosDisponiveis([]);
+      });
+  }, [barbeiro, dataAtendimento]); // ✅ também movido para dentro
 
   function agendar() {
     const AgendamentoRequest = {
@@ -99,11 +99,10 @@ function Agendamento() {
       observacoes,
     };
 
-
     if (!barbeiro || !nome || !dataAtendimento || !horario) {
-       alert("Preencha com suas informações");
-       return;
-     }
+      alert("Preencha com suas informações");
+      return;
+    }
 
     axios
       .post("http://localhost:8080/api/agendamento", AgendamentoRequest)
@@ -133,12 +132,13 @@ function Agendamento() {
           <Button onClick={cadastrar} secondary>Cadastrar</Button>
         </div> */}
 
-
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
-                        <center> <Image src='/logoprovisorio.png' size='medium' /> </center>
-              
+              <center>
+                <Image src="/logoprovisorio.png" size="medium" />
+              </center>
+
               <h3 style={styles.title}>Agendamento de Serviço</h3>
               <Form style={styles.form}>
                 <Form.Field>
