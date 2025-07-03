@@ -83,12 +83,29 @@ const MenuSistema = ({ tela }) => {
             </Button>
           </Menu.Item>
 
-          <Menu.Item
-            as={Link}
-            to="/dashboard"
-          >
-            Administrador
-          </Menu.Item>
+          
+          
+           <Dropdown item text="Admnistrador">
+   <Dropdown.Menu >
+     <Dropdown.Item
+       text="Consultar Agendamentos"
+       active={tela === "admin"}
+       as={Link}
+       to="/agendamentos"
+       />
+
+
+       <Dropdown.Item
+  text="Cadastrar Serviços"
+  active={tela === "cadastroServico"}
+  as={Link}
+  to="/CadastroServicos"
+  className={styles.dropdown} />
+   </Dropdown.Menu>
+ </Dropdown>
+          
+          
+          
 
 
 

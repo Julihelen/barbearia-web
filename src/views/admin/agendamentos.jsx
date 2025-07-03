@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Container, Header, Image } from "semantic-ui-react";
-import MenuSistema from "../../components/Menu";
+import MenuSistema from "../../components/MenuAdmin";
 import axios from "axios";
 
 function Agendamentos() {

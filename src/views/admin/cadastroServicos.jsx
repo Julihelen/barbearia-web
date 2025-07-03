@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
-import MenuSistema from "../../components/Menu";
+import MenuSistema from "../../components/MenuAdmin";
 import axios from "axios";
 
 const servicosOptions = [
