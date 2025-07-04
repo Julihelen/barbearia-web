@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Container,  Dropdown, Button } from 'semantic-ui-react';
+import { Menu, Container,  Dropdown, Button, MenuItem } from 'semantic-ui-react';
 import { Link } from "react-router-dom";
 import styles from '../views/home/styles/Home.module.css';
 
@@ -16,7 +16,8 @@ const MenuSistema = ({ tela = ""}) => {
           >
           BARBEARIA CHEFE 
         </Menu.Item>
-        
+
+
         <Menu.Menu position='right'>
          
           <Dropdown item text="Administrador">
@@ -27,12 +28,13 @@ const MenuSistema = ({ tela = ""}) => {
                 as={Link}
                 to="/agendamentos"
               />
-              <Dropdown.Item
+              
+                
                 text="Cadastro serviços"
                 active={tela === "cadastroServico"}
                 as={Link}
                 to="/cadastroServicos"
-              />
+              
             </Dropdown.Menu>
           </Dropdown>
 

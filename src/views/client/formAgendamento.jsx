@@ -142,28 +142,38 @@ function Agendamento() {
               <h3 style={styles.title}>Agendamento de Serviço</h3>
               <Form style={styles.form}>
                 <Form.Field>
-                  <label>Nome Completo</label>
+                  <label style={{ color: "#bb872e" }}>Nome Completo</label>
                   <input
                     type="text"
                     name="nome"
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
                     placeholder="Nome do Cliente"
+                    style={{
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e"
+                    }}
                   />
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Data de Atendimento</label>
+                  <label style={{ color: "#bb872e" }}> Data de Atendimento</label>
                   <input
                     type="date"
                     name="dataAtendimento"
                     value={dataAtendimento}
                     onChange={(e) => setDataAtendimento(e.target.value)}
+                    style={{
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e"
+                    }}
                   />
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Serviço</label>
+                  <label style={{ color: "#bb872e" }}> Serviço</label>
                   <Dropdown
                     placeholder="Selecione um serviço"
                     fluid
@@ -172,11 +182,16 @@ function Agendamento() {
                     options={servicosOptions}
                     value={servico}
                     onChange={(e, data) => setServico(data.value)}
+                    style={{
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e"
+                    }}
                   />
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Barbeiro</label>
+                  <label style={{ color: "#bb872e" }}>Barbeiro</label>
                   <Dropdown
                     placeholder="Selecione um barbeiro"
                     fluid
@@ -195,7 +210,11 @@ function Agendamento() {
                               width: "30px",
                               height: "30px",
                               borderRadius: "50%",
+                              borderColor: "#bb872e",
                               marginRight: "10px",
+                              backgroundColor: "#0a0803",
+                              color: "white",
+                              border: "1px solid #bb872e"
                             }}
                           />
                           <span>{b.text}</span>
@@ -210,16 +229,21 @@ function Agendamento() {
                     <div style={{ marginTop: "10px", textAlign: "center" }}>
                       <img
                         src={fotoBarbeiro}
-                        alt="Foto do barbeiro"
-                        style={styles.foto}
-                      />
+                      alt="Foto do barbeiro"
+                      style={{
+                        ...styles.foto,
+                        backgroundColor: "#0a0803",
+                        color: "white",
+                        border: "1px solid #bb872e"
+                      }}
+                    />
                       <p style={{ marginTop: "5px" }}>{barbeiro}</p>
                     </div>
                   )}
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Horário</label>
+                  <label style={{ color: "#bb872e" }}> Horário</label>
                   <Dropdown
                     placeholder="Selecione um horário"
                     fluid
@@ -229,16 +253,28 @@ function Agendamento() {
                     value={horario}
                     onChange={(e, data) => setHorario(data.value)}
                     disabled={!horariosDisponiveis.length}
+                    style={{
+                      backgroundColor: "#0a0803!important",
+                      color: "white",
+                      border: "1px solid #bb872e"
+                    }}
                   />
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Observações</label>
+                  <label style={{ color: "#bb872e" }}> Observações</label>
                   <textarea
                     name="observacoes"
                     value={observacoes}
                     onChange={(e) => setObservacoes(e.target.value)}
                     placeholder="Alergias, preferências, detalhes"
+                    style={{
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e",
+                      height: "100px",
+                      resize: "none",
+                    }}
                   />
                 </Form.Field>
 
@@ -248,7 +284,7 @@ function Agendamento() {
                   circular
                   icon
                   labelPosition="left"
-                  color="blue"
+                  color="#bb872e"
                   floated="right"
                   onClick={agendar}
                 >
@@ -269,7 +305,7 @@ export default Agendamento;
 const styles = {
   container: {
     minHeight: "50vh",
-    backgroundColor: "black",
+    backgroundColor: "0a0803",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
@@ -282,10 +318,11 @@ const styles = {
     textAlign: "center",
   },
   form: {
-    backgroundColor: "#F1DCBA",
+    backgroundColor: "#0a0803",
     padding: "10px",
     borderRadius: "12px",
-    boxShadow: "0 2px 10px rgba(211, 25, 25, 0.1)",
+    border: "1px solid #bb872e",
+    boxShadow: "0 0 10px rgba(187, 135, 46, 0.2)",
     display: "flex",
     flexDirection: "column",
     gap: "10px",
