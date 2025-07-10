@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MenuAdmin from '../../components/MenuAdmin';
+import { Segment, Grid } from 'semantic-ui-react';
+import VerticalMenu from '../../components/VerticalMenu';
 
-
-const Dashboard = () => {
+class Dashboard extends Component {
+render() {
   return (
     <>
-      <MenuAdmin tela="Dashboard" />
-        {/* Conteúdo principal do dashboard */}
-        <h1> AQUI VAI O DASHBOARD </h1>
-      
+    <div> <VerticalMenu/> </div>
+      <h1>Dashboard</h1>
     </>
   );
-};
+}
+
+}
 
 export default Dashboard;

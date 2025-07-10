@@ -136,10 +136,11 @@ function Agendamento() {
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
               <center>
-                <Image src="/logoprovisorio.png" size="medium" />
+                <Image src="/logoprovisorio.png" size="medium" /> 
               </center>
 
               <h3 style={styles.title}>Agendamento de Serviço</h3>
+              <h3 style={{ color: "#bb872e", textAlign: "center" }}> </h3>
               <Form style={styles.form}>
                 <Form.Field>
                   <label style={{ color: "#bb872e" }}>Nome Completo</label>
