@@ -20,8 +20,7 @@ function Agendamentos() {
     <>
       <MenuSistema tela="admin" />
       <Container style={{ marginTop: "4em" }}>
-                  <center> <Image src='/logoprovisorio.png' size='medium' /> </center>
-        
+      
         <Header style={{color: "white"}}  as="h2">Painel do Administrador - Agendamentos</Header>
         <Table celled striped>
           <Table.Header>

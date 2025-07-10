@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import MenuAdmin from '../../components/MenuAdmin';
 import { Segment, Grid } from 'semantic-ui-react';
-import VerticalMenu from '../../components/VerticalMenu';
+import TopMenu from '../../components/TopMenu'; 
 
 class Dashboard extends Component {
 render() {
   return (
     <>
-    <div> <VerticalMenu/> </div>
+    <div> <MenuAdmin/> </div>
+    <div>   <TopMenu/> </div>
+
       <h1>Dashboard</h1>
     </>
   );

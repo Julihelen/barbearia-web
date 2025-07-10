@@ -1,49 +1,61 @@
-import React from 'react';
-import { Menu, Container,  Dropdown, Button, MenuItem } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Menu } from 'semantic-ui-react';
 import { Link } from "react-router-dom";
-import styles from '../views/home/styles/Home.module.css';
+import TextIcon from '../components/TextIcon';
 
-const MenuSistema = ({ tela = ""}) => {
-// const MenuSistema = () => {
-  return (
-    <Menu inverted borderless className={styles.headerMenu}>
-      <Container>
-        <Menu.Item 
-          header 
-          active={tela === "home"}
-          as={Link}
-          to="/Home" className={styles.logoText}
-          >
-          BARBEARIA CHEFE 
+class SideMenu extends Component {
+  state = {
+    activeItem: 'dashboard',
+  };
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  changeSize = () => this.setState({ smallSidebar: !this.props.smallMenu });
+
+  getMenu() {
+    const { activeItem } = this.state;
+
+    return (
+      <Menu fixed='left' borderless className={(this.props.smallMenu ? 'small-side' : '') + ' side'} vertical>
+        <Menu.Item as={Link} to='/' name='dashboard' active={activeItem === 'dashboard'} onClick={this.handleItemClick}>
+          <TextIcon hideText={this.props.smallMenu} color='teal' name='home'>
+            Dashboard
+          </TextIcon>
         </Menu.Item>
 
+        <Menu.Item as={Link} to='/agendamentos' name='appointments' active={activeItem === 'appointments'} onClick={this.handleItemClick}>
+          <TextIcon hideText={this.props.smallMenu} name='calendar'>
+            Agendamentos
+          </TextIcon>
+        </Menu.Item>
 
-        <Menu.Menu position='right'>
-         
-          <Dropdown item text="Administrador">
-            <Dropdown.Menu >
-              <Dropdown.Item
-                text="Consultar agendamentos"
-                active={tela === "Admin"}
-                as={Link}
-                to="/agendamentos"
-              />
-              
-                
-                text="Cadastro serviços"
-                active={tela === "cadastroServico"}
-                as={Link}
-                to="/cadastroServicos"
-              
-            </Dropdown.Menu>
-          </Dropdown>
+        <Menu.Item as={Link} to='/cadastroBarbeiro' name='cadastrobarbeiro' active={activeItem === 'cadastrobarbeiro'} onClick={this.handleItemClick}>
+          <TextIcon hideText={this.props.smallMenu} name='users'>
+            Barbeiros
+          </TextIcon>
+        </Menu.Item>
 
-      
-    
-        </Menu.Menu>
-      </Container>
-    </Menu>
-  );
-};
+        <Menu.Item as={Link} to='/servicos' name='servicos' active={activeItem === 'servicos'} onClick={this.handleItemClick}>
+          <TextIcon hideText={this.props.smallMenu} name='clipboard'>
+            Serviços
+          </TextIcon>
+        </Menu.Item>
+      </Menu>
+    );
+  }
 
-export default MenuSistema;
+  render() {
+    return (
+      <div className='parent'>
+        <div className={(this.props.smallMenu ? 'small-side ' : '') + 'side'}>
+          {this.getMenu()}
+        </div>
+        <div className={(this.props.smallMenu ? 'small-content ' : '') + 'content'}>
+          {this.props.children}
+        </div>
+      </div>
+    );
+  }
+}
+
+
+export default SideMenu;

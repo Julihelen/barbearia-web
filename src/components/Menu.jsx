@@ -2,7 +2,6 @@ import { Menu, Container, Dropdown, Button, Icon } from 'semantic-ui-react';
 import styles from '../views/home/styles/Home.module.css';
 import { Link } from "react-router-dom";
 
-
 const MenuSistema = ({ tela }) => {
   return (
     <Menu inverted borderless className={styles.headerMenu}>
@@ -19,9 +18,9 @@ const MenuSistema = ({ tela }) => {
         </Menu.Item>
 
         <Menu.Menu position='right'>
-
+          {/* Serviços */}
           <Dropdown item text="Serviços">
-            <Dropdown.Menu >
+            <Dropdown.Menu>
               <Dropdown.Item
                 text="Consultar serviços"
                 active={tela === "Consultar serviços"}
@@ -40,15 +39,15 @@ const MenuSistema = ({ tela }) => {
 
           <Menu.Item name='Sobre' className={styles.menuItem} />
 
+          {/* Cliente */}
           <Dropdown item text="Cliente">
-            <Dropdown.Menu >
+            <Dropdown.Menu>
               <Dropdown.Item
                 text="Login"
                 active={tela === "Login"}
                 as={Link}
                 to="/clienteLogin"
               />
-
               <Dropdown.Item
                 text="Cadastro"
                 active={tela === "Cadastro"}
@@ -59,80 +58,43 @@ const MenuSistema = ({ tela }) => {
             </Dropdown.Menu>
           </Dropdown>
 
-
-
+          {/* Avaliações */}
           <Dropdown item text="Avaliações">
-            <Dropdown.Menu >
+            <Dropdown.Menu>
               <Dropdown.Item
                 text="Faça sua avaliação"
                 active={tela === "Avaliacao"}
                 as={Link}
                 to="/formAvaliacao"
-                className={styles.dropdown} />
+                className={styles.dropdown}
+              />
             </Dropdown.Menu>
           </Dropdown>
+
+          {/* Agendar Agora */}
           <Menu.Item
             as={Link}
             to="/consultarServicos"
-            className={styles.bookNowButton}>
+            className={styles.bookNowButton}
+          >
             Agendar Agora
           </Menu.Item>
+
+
           <Menu.Item>
-            <Button basic icon className={styles.carrinhoButton}> {/* Use a classe do CSS Module */}
-              <Icon name="add shopping cart" className={styles.carrinhoIcon} /> {/* Aplique a classe ao ícone também */}
+            <Button basic icon className={styles.carrinhoButton}>
+              <Icon name="add shopping cart" className={styles.carrinhoIcon} />
             </Button>
           </Menu.Item>
+          
+          {/* Aqui começa o menu do administrador */}
+          <Menu.Item
+            name='Administrador'
+            as={Link}
+            to="/dashboard"
+            className={styles.menuItem}
+          />
 
-
-
-          <Dropdown item text="Administrador">
-            <Dropdown.Menu >
-              <Dropdown.Item
-                text="Consultar Agendamentos"
-                active={tela === "admin"}
-                as={Link}
-                to="/agendamentos"
-              />
-              <Dropdown.Item
-                text="Dashboard"
-                active={tela === "dashboard"}
-                as={Link}
-                to="/dashboard"
-              />
-
-              <Dropdown.Item
-                text="Cadastrar Serviços"
-                active={tela === "cadastroServico"}
-                as={Link}
-                to="/CadastroServicos"
-                className={styles.dropdown} />
-            </Dropdown.Menu>
-          </Dropdown>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          {/* <Menu.Item
-         className={styles.carrinho}>
-          <div class="ui vertical button" tabindex="0">
-            <div >
-              <i 
-                class="shop icon">
-              </i>
-            </div>
-          </div>
-         </Menu.Item> */}
         </Menu.Menu>
       </Container>
     </Menu>
