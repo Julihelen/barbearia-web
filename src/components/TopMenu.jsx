@@ -3,7 +3,7 @@ import {Icon,
         Image,
         Input, 
         Label, 
-        Menu,  
+        Menu, 
        } from 'semantic-ui-react'
 import layout from '../components/layout';
 
@@ -22,7 +22,7 @@ class TopMenu extends Component {
         <Menu.Item className="logo-space-menu-item">
           <div className="display-inline logo-space">
             <Image src="" size ="mini" />
-            <p> Dashboard</p>
+            <p> Chefe Barbearia </p>
           </div>
         </Menu.Item>
 
@@ -51,7 +51,7 @@ class TopMenu extends Component {
               floating
               circular
             >
-              22
+            1
             </Label>
           </Menu.Item>
           <Menu.Item className="no-border" position="right">

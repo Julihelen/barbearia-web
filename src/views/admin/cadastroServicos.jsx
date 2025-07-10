@@ -14,17 +14,6 @@ const servicosOptions = [
 ];
 
 
-
-// function logar() {
-//   alert("Você será direcionado para página de login");
-//   window.location.href = "/login-cliente";
-// }
-
-// function cadastrar() {
-//   alert("Você será direcionado para página de cadastro");
-//   window.location.href = "/form-cliente";
-// }
-
 function Agendamento() {
   const [servico, setServico] = useState();
   const [observacoes, setObservacoes] = useState();
