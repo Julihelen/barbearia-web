@@ -5,7 +5,6 @@ import {Icon,
         Label, 
         Menu, 
        } from 'semantic-ui-react'
-import layout from '../components/layout';
 
 class TopMenu extends Component {
   state = {};
