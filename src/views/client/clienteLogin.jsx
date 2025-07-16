@@ -1,5 +1,4 @@
-import MenuSistema from "../../components/Menu";
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Form,
@@ -10,8 +9,31 @@ import {
   Image,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import MenuSistema from "../../components/Menu";
 
 function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [formError, setFormError] = useState(false);
+  const [errorMessages, setErrorMessages] = useState([]);
+
+  function handleLogin() {
+    const errors = [];
+    if (!email) errors.push("E-mail é obrigatório.");
+    if (!senha) errors.push("Senha é obrigatória.");
+
+    if (errors.length > 0) {
+      setFormError(true);
+      setErrorMessages(errors);
+      return;
+    }
+
+    setFormError(false);
+    setErrorMessages([]);
+
+    console.log("Login enviado:", { email, senha });
+  }
+
   return (
     <>
       <MenuSistema tela="Cadastro Cliente" />
@@ -25,10 +47,18 @@ function LoginForm() {
           <center>
             <Image src="/logoprovisorio.png" size="medium" />
           </center>
-          <Header as="h2" style={{ color: "#bb872e" }} textAlign="center">
+          <Header
+            as="h2"
+            style={{
+              color: "#bb872e",
+              fontFamily: "'Palatino', 'Palatino Linotype', 'Book Antiqua', serif",
+            }}
+            textAlign="center"
+          >
             Login
           </Header>
-          <Form size="medium">
+
+          <Form size="medium" error={formError}>
             <Segment
               stacked
               style={{
@@ -37,35 +67,53 @@ function LoginForm() {
                 boxShadow: "0 0 10px rgba(187, 135, 46, 0.2)",
               }}
             >
-              <Form.Input
-                fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="E-mail"
-                input={{
-                  style: {
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    border: "1px solid #bb872e"
-                  }
-                }}
-              />
+              {formError && (
+                <Message
+                  error
+                  header="Erro ao enviar o formulário"
+                  list={errorMessages}
+                />
+              )}
 
-              <Form.Input
-                fluid
-                icon="lock"
-                iconPosition="left"
-                placeholder="Senha"
-                type="password"
-                input={{
-                  style: {
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    border: "1px solid #bb872e"
-                  }
-                }}
-              />
+              <Form.Field required error={!email && formError}>
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="E-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  input={{
+                    style: {
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e",
+                    },
+                  }}
+                />
+              </Form.Field>
+
+              <Form.Field required error={!senha && formError}>
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Senha"
+                  type="password"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  input={{
+                    style: {
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e",
+                    },
+                  }}
+                />
+              </Form.Field>
+
               <Button
+                onClick={handleLogin}
                 style={{
                   backgroundColor: "#bb872e",
                   color: "white",
@@ -87,7 +135,10 @@ function LoginForm() {
             }}
           >
             Não é um cliente cadastrado?{" "}
-            <Link style={{ color: "#bb872e", fontWeight: "bold" }} to="/cadastroCliente">
+            <Link
+              style={{ color: "#bb872e", fontWeight: "bold" }}
+              to="/cadastroCliente"
+            >
               Cadastre-se
             </Link>
           </Message>
