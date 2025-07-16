@@ -10,7 +10,7 @@ const MenuAdmin = ({ activeItem = '', onMenuClick = () => { } }) => {
           active={activeItem === 'dashboard'}
           onClick={() => onMenuClick('dashboard')}
           as='a'
-          href="/"
+          href="/dashboard"
         >
           <Icon name='dashboard' />
           Dashboard

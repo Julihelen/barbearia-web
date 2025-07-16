@@ -64,7 +64,7 @@ if (!servico || !observacoes) {
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
-                          <center> <Image src='/logoprovisorio.png' size='large' /> </center>
+
                 
               <h3 style={styles.title}>Cadastrar Serviço</h3>
               <Form style={styles.form}>

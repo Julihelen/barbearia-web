@@ -14,7 +14,7 @@ const TopMenu = () => {
     <Menu fixed='top' inverted>
       <Container>
         <Menu.Item header>
-          Administrador
+          Barbearia Chefe
         </Menu.Item>
 
         <Menu.Menu position='right'>

@@ -71,18 +71,18 @@ const Sobre = () => {
     ];
 
     const equipe = [
-        { id: 1, nome: 'Lucas', funcao: 'Barbeiro Chefe', foto: 'https://via.placeholder.com/150?text=Lucas' },
-        { id: 2, nome: 'Fernanda', funcao: 'Barbeira', foto: 'https://via.placeholder.com/150?text=Fernanda' },
-        { id: 3, nome: 'Rafael', funcao: 'Estilista', foto: 'https://via.placeholder.com/150?text=Rafael' },
+        { id: 1, nome: 'João', funcao: 'Barbeiro', foto: 'https://via.placeholder.com/150?text=Lucas' },
+        { id: 2, nome: 'Maria', funcao: 'Barbeira e estilista', foto: 'https://via.placeholder.com/150?text=Fernanda' },
+        { id: 3, nome: 'Carlos', funcao: 'Barbeiro', foto: 'https://via.placeholder.com/150?text=Rafael' },
     ];
 
 return (
     <div style={styles.page}>
-        <Container style={{ marginTop: '2em', marginBottom: '2em' }}>
-            <Header as="h1" textAlign="center" style={styles.header}>
-                <Header.Content>Barbearia Chefe</Header.Content>
-            </Header>
-        </Container>
+        <Header as="h1" textAlign="center" style={styles.header}>
+            <Header.Content style={{ fontFamily: 'Palatino, serif' }}>
+                Barbearia Chefe
+            </Header.Content>
+        </Header>
 
         <Container>
             <Segment style={styles.segment}>
