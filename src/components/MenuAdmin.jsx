@@ -22,19 +22,20 @@ class SideMenu extends Component {
           </TextIcon>
         </Menu.Item>
 
-        <Menu.Item as={Link} to='/agendamentos' name='appointments' active={activeItem === 'appointments'} onClick={this.handleItemClick}>
+        <Menu.Item as={Link} to='/agendamentos' name='agendamentos' active={activeItem === 'agendamentos'} onClick={this.handleItemClick}>
           <TextIcon hideText={this.props.smallMenu} name='calendar'>
             Agendamentos
           </TextIcon>
         </Menu.Item>
 
-        <Menu.Item as={Link} to='/cadastroBarbeiro' name='cadastrobarbeiro' active={activeItem === 'cadastrobarbeiro'} onClick={this.handleItemClick}>
+        <Menu.Item as={Link} to='/formBarbeiro' name='formbarbeiro' active={activeItem === 'cadastrobarbeiro'} onClick={this.handleItemClick}>
           <TextIcon hideText={this.props.smallMenu} name='users'>
             Barbeiros
           </TextIcon>
         </Menu.Item>
 
-        <Menu.Item as={Link} to='/servicos' name='servicos' active={activeItem === 'servicos'} onClick={this.handleItemClick}>
+
+        <Menu.Item as={Link} to='/cadastroservicos' name='servicos' active={activeItem === 'cadastroservicos'} onClick={this.handleItemClick}>
           <TextIcon hideText={this.props.smallMenu} name='clipboard'>
             Serviços
           </TextIcon>

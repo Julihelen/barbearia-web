@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Grid, Icon, Container, Image } from "semantic-ui-react";
-import MenuSistema from "../../components/Menu";
+import MenuAdmin from "../../components/MenuAdmin";
+import TopMenu from "../../components/TopMenu";
 import axios from "axios";
 import "semantic-ui-less/semantic.less";
 
@@ -57,7 +58,8 @@ function CadastroBarbeiro() {
 
   return (
     <>
-      <MenuSistema tela={"Cadastrar barbeiro"} />
+      <TopMenu />
+      <MenuAdmin tela={"Cadastrar barbeiro"} />
       <div className="ui container">
         <Grid columns={2} divided stackable>
           <Grid.Row>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/MenuAdmin";
 import axios from "axios";
+import TopMenu from "../../components/TopMenu";
 
 const servicosOptions = [
   { key: "corte", text: "Corte de Cabelo", value: "Corte de Cabelo" },
@@ -51,6 +52,7 @@ if (!servico || !observacoes) {
 
   return (
     <>
+    <TopMenu />
       <MenuSistema tela="cadastroServico" />
       <div style={styles.container}>
         {/* <div id="botao" style={styles.botoes}>

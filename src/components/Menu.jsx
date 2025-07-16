@@ -37,7 +37,12 @@ const MenuSistema = ({ tela }) => {
             </Dropdown.Menu>
           </Dropdown>
 
-          <Menu.Item name='Sobre' className={styles.menuItem} />
+          <Menu.Item
+            name='Sobre'
+            as={Link}
+            to="/sobre"
+            className={styles.menuItem}
+          />
 
           {/* Cliente */}
           <Dropdown item text="Cliente">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Container, Header, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/MenuAdmin";
 import axios from "axios";
+import TopMenu from "../../components/TopMenu";
 
 function Agendamentos() {
   const [agendamentos, setAgendamentos] = useState([]);
@@ -18,10 +19,11 @@ function Agendamentos() {
 
   return (
     <>
+    <TopMenu />
       <MenuSistema tela="admin" />
       <Container style={{ marginTop: "4em" }}>
-      
-        <Header style={{color: "white"}}  as="h2"> Painel do Administrador - Agendamentos</Header>
+
+        <Header style={{ color: "white" }} as="h2"> Painel do Administrador - Agendamentos</Header>
         <Table celled striped>
           <Table.Header>
             <Table.Row>
