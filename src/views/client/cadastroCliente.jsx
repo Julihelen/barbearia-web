@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Grid, Icon, Header, Image, Segment } from 'semantic-ui-react';
+import { Form, Button, Grid, Icon, Header, Image, Segment, Message } from 'semantic-ui-react';
 import axios from 'axios';
 import MenuSistema from "../../components/Menu";
 
@@ -11,12 +11,25 @@ function CadastroCliente() {
   const [foneCelular, setFoneCelular] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [formError, setFormError] = useState(false);
+  const [errorMessages, setErrorMessages] = useState([]);
 
   function salvar() {
-    if (!nome || !cpf || !email || !senha) {
-      alert("Preencha todos os campos obrigatórios.");
+    const errors = [];
+
+    if (!nome) errors.push("Nome é obrigatório.");
+    if (!cpf) errors.push("CPF é obrigatório.");
+    if (!email) errors.push("Email é obrigatório.");
+    if (!senha) errors.push("Senha é obrigatória.");
+
+    if (errors.length > 0) {
+      setFormError(true);
+      setErrorMessages(errors);
       return;
     }
+
+    setFormError(false);
+    setErrorMessages([]);
 
     let clienteRequest = {
       nome,
@@ -31,6 +44,7 @@ function CadastroCliente() {
     axios.post("http://localhost:8080/api/cliente", clienteRequest)
       .then((response) => {
         console.log('Cliente cadastrado com sucesso.');
+        // Limpar o formulário, se quiser
       })
       .catch((error) => {
         console.log('Erro ao incluir o cliente.');
@@ -63,19 +77,23 @@ function CadastroCliente() {
               boxShadow: "0 0 10px rgba(187, 135, 46, 0.2)",
             }}
           >
-            <Form className="ui form">
-              <Form.Field required>
+            <Form className="ui form" error={formError}>
+              {formError && (
+                <Message
+                  error
+                  header='Erro ao enviar o formulário'
+                  list={errorMessages}
+                />
+              )}
+
+              <Form.Field required error={!nome && formError}>
                 <label style={{ color: "#bb872e" }}>Nome Completo</label>
                 <input
                   type="text"
                   value={nome}
                   onChange={e => setNome(e.target.value)}
                   placeholder="Nome do Cliente"
-                  style={{
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    borderColor: "#bb872e"
-                  }}
+                  style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
                 />
               </Form.Field>
 
@@ -85,26 +103,18 @@ function CadastroCliente() {
                   type="date"
                   value={dataNascimento}
                   onChange={e => setDataNascimento(e.target.value)}
-                  style={{
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    borderColor: "#bb872e"
-                  }}
+                  style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
                 />
               </Form.Field>
 
-              <Form.Field required>
+              <Form.Field required error={!cpf && formError}>
                 <label style={{ color: "#bb872e" }}>CPF</label>
                 <input
                   type="text"
                   value={cpf}
                   onChange={e => setCpf(e.target.value)}
                   placeholder="CPF"
-                  style={{
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    borderColor: "#bb872e"
-                  }}
+                  style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
                 />
               </Form.Field>
 
@@ -115,11 +125,7 @@ function CadastroCliente() {
                   value={endereco}
                   onChange={e => setEndereco(e.target.value)}
                   placeholder="Endereço"
-                  style={{
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    borderColor: "#bb872e"
-                  }}
+                  style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
                 />
               </Form.Field>
 
@@ -130,41 +136,29 @@ function CadastroCliente() {
                   value={foneCelular}
                   onChange={e => setFoneCelular(e.target.value)}
                   placeholder="Telefone"
-                  style={{
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    borderColor: "#bb872e"
-                  }}
+                  style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
                 />
               </Form.Field>
 
-              <Form.Field required>
+              <Form.Field required error={!email && formError}>
                 <label style={{ color: "#bb872e" }}>Email</label>
                 <input
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   placeholder="Email"
-                  style={{
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    borderColor: "#bb872e"
-                  }}
+                  style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
                 />
               </Form.Field>
 
-              <Form.Field required>
+              <Form.Field required error={!senha && formError}>
                 <label style={{ color: "#bb872e" }}>Senha</label>
                 <input
                   type="password"
                   value={senha}
                   onChange={e => setSenha(e.target.value)}
                   placeholder="Senha"
-                  style={{
-                    backgroundColor: "#0a0803",
-                    color: "white",
-                    borderColor: "#bb872e"
-                  }}
+                  style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
                 />
               </Form.Field>
 
