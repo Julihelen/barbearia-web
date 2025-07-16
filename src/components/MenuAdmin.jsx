@@ -1,62 +1,47 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
 import { Link } from "react-router-dom";
-import TextIcon from '../components/TextIcon';
+import { Menu, Icon } from 'semantic-ui-react';
 
-class SideMenu extends Component {
-  state = {
-    activeItem: 'dashboard',
-  };
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  changeSize = () => this.setState({ smallSidebar: !this.props.smallMenu });
-
-  getMenu() {
-    const { activeItem } = this.state;
-
-    return (
-      <Menu fixed='left' borderless className={(this.props.smallMenu ? 'small-side' : '') + ' side'} vertical>
-        <Menu.Item as={Link} to='/' name='dashboard' active={activeItem === 'dashboard'} onClick={this.handleItemClick}>
-          <TextIcon hideText={this.props.smallMenu} color='teal' name='home'>
-            Dashboard
-          </TextIcon>
+const MenuAdmin = ({ activeItem, onMenuClick }) => {
+  return (
+    <>
+      <Menu vertical fixed='left' inverted style={{ height: '200vh', marginTop: '3.5em' }}>
+        <Menu.Item
+          name='dashboard'
+          active={activeItem === 'dashboard'}
+          onClick={() => onMenuClick('dashboard')}
+        >
+          <Icon name='user plus' />
+          Barbeiros
         </Menu.Item>
-
-        <Menu.Item as={Link} to='/agendamentos' name='agendamentos' active={activeItem === 'agendamentos'} onClick={this.handleItemClick}>
-          <TextIcon hideText={this.props.smallMenu} name='calendar'>
-            Agendamentos
-          </TextIcon>
+        <Menu.Item
+          name='barbeiros'
+          active={activeItem === 'barbeiros'}
+          onClick={() => onMenuClick('formBarbeiro')}
+        >
+          <Icon name='users' />
+          Clientes
         </Menu.Item>
-
-        <Menu.Item as={Link} to='/formBarbeiro' name='formbarbeiro' active={activeItem === 'cadastrobarbeiro'} onClick={this.handleItemClick}>
-          <TextIcon hideText={this.props.smallMenu} name='users'>
-            Barbeiros
-          </TextIcon>
+        <Menu.Item
+          name='agendamentos'
+          active={activeItem === 'agendamentos'}
+          onClick={() => onMenuClick('agendamentos')}
+        >
+          <Icon
+            name='clipboard list' />
+          Serviços
         </Menu.Item>
-
-
-        <Menu.Item as={Link} to='/cadastroservicos' name='servicos' active={activeItem === 'cadastroservicos'} onClick={this.handleItemClick}>
-          <TextIcon hideText={this.props.smallMenu} name='clipboard'>
-            Serviços
-          </TextIcon>
+        <Menu.Item
+          name='servicos'
+          active={activeItem === 'servicos'}
+          onClick={() => onMenuClick('CadastroServicos')}
+        >
+          <Icon name='calendar alternate' />
+          Agendamentos
         </Menu.Item>
       </Menu>
-    );
-  }
+    </>
+  );
+};
 
-  render() {
-    return (
-      <div className='parent'>
-        <div className={(this.props.smallMenu ? 'small-side ' : '') + 'side'}>
-          {this.getMenu()}
-        </div>
-        <div className={(this.props.smallMenu ? 'small-content ' : '') + 'content'}>
-          {this.props.children}
-        </div>
-      </div>
-    );
-  }
-}
-
-
-export default SideMenu;
+export default MenuAdmin;

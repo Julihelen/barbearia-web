@@ -1,6 +1,5 @@
 
 import React from 'react';
-import Menu from './Menu';
 import Footer from './Footer';
 
 import {
@@ -81,7 +80,6 @@ return (
     <div style={styles.page}>
         <Container style={{ marginTop: '2em', marginBottom: '2em' }}>
             <Header as="h1" textAlign="center" style={styles.header}>
-                <Image src="logoprovisorio.png" circular centered size="small" />
                 <Header.Content>Barbearia Chefe</Header.Content>
             </Header>
         </Container>
@@ -107,7 +105,7 @@ return (
             <Segment style={styles.segment}>
                 <Header as="h3" style={styles.header}>Nossos Diferenciais</Header>
                 <List bulleted>
-                    <List.Item style={styles.listItem}>Cortes clássicos e modernos</List.Item>
+                    <List.Item style={styles.listItem}>Cortes modernos</List.Item>
                     <List.Item style={styles.listItem}>Atendimento personalizado</List.Item>
                     <List.Item style={styles.listItem}>Ambiente confortável e limpo</List.Item>
                     <List.Item style={styles.listItem}>Produtos de alta qualidade</List.Item>

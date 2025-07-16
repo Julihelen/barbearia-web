@@ -1,72 +1,31 @@
-import React, {Component} from 'react'
-import {Icon,
-        Image,
-        Input, 
-        Label, 
-        Menu, 
-       } from 'semantic-ui-react'
+import React from 'react';
+import { Menu, Container, Icon } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
-class TopMenu extends Component {
-  state = {};
+const TopMenu = () => {
+  const navigate = useNavigate();
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/'); 
+  };
 
-  doSearch(event) {
-      this.props.actions.search(event.target.value);  
-  }
-
-  render() {
-    return (
-      <Menu fixed="top" className="top-menu">
-        <Menu.Item className="logo-space-menu-item">
-          <div className="display-inline logo-space">
-            <Image src="" size ="mini" />
-            <p> Chefe Barbearia </p>
-          </div>
+  return (
+    <Menu fixed='top' inverted>
+      <Container>
+        <Menu.Item header>
+          Administrador
         </Menu.Item>
 
-        <Menu.Item
-          className="no-border"
-        >
-          <Icon name="bars" />
-        </Menu.Item>
-
-        <Menu.Item className="no-border drop-left-padding">
-          <Input
-            className="icon"
-            icon="search"
-            placeholder="Search..."
-            onChange={(event) => this.doSearch(event)}
-          />
-        </Menu.Item>
-
-        <Menu.Menu position="right">
-          <Menu.Item className="no-border" position="right">
-
-            <Label
-              className="label-on-corner"
-              color="teal"
-              size={"mini"}
-              floating
-              circular
-            >
-            1
-            </Label>
-          </Menu.Item>
-          <Menu.Item className="no-border" position="right">
-            <div className="display-inline">
-              <Image
-                circular
-                size={"mini"}
-                src="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
-              />
-              Administrador 
-            </div>
+        <Menu.Menu position='right'>
+          <Menu.Item onClick={handleLogout}>
+            <Icon name='sign-out' />
+            Logout
           </Menu.Item>
         </Menu.Menu>
-      </Menu>
-    );
-  }
-}
+      </Container>
+    </Menu>
+  );
+};
 
-export default TopMenu; 
+export default TopMenu;
