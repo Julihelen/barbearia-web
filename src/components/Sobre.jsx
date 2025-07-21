@@ -66,18 +66,21 @@ const Sobre = () => {
             <Grid.Row>
               <Grid.Column>
                 <Icon name='user tie' size='huge' />
-                <Header as='h3'>Atendimento Personalizado</Header>
+                <Header as='h3' style={{ color: '#bb872e' }}> Atendimento Personalizado </Header>
                 <p>Você é tratado como chefe. Aqui, cada detalhe importa.</p>
               </Grid.Column>
               <Grid.Column>
                 <Icon name='cut' size='huge' />
-                <Header as='h3'>Profissionais Qualificados</Header>
+                <Header as='h3' style={{ color: '#bb872e' }}>
+                  Profissionais Qualificados
+                </Header>
                 <p>Barbeiros experientes, atualizados e apaixonados pelo que fazem.</p>
               </Grid.Column>
               <Grid.Column>
                 <Icon name='coffee' size='huge' />
-                <Header as='h3'>Ambiente Acolhedor</Header>
-                <p>Café, conversa boa e um espaço onde você quer estar.</p>
+                <Header as='h3' style ={{ color: '#bb872e' }}>
+                  Ambiente Acolhedor</Header>
+                <p> Um espaço onde você quer estar.</p>
               </Grid.Column>
             </Grid.Row>
           </Grid>
