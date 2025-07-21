@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
+import { Form, Button, Grid, Icon, Dropdown, Image, Rating } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
 
@@ -46,6 +46,7 @@ function Avaliacao() {
   const [barbeiro, setBarbeiro] = useState();
   const [observacoes, setObservacoes] = useState();
   const [fotoBarbeiro, setFotoBarbeiro] = useState(null);
+  const [nota, setNota] = useState(0);
 
   function enviar() {
     const AgendamentoRequest = {
@@ -54,12 +55,6 @@ function Avaliacao() {
       barbeiro,
       observacoes,
     };
-
-    // if (!barbeiro || !nome || !dataAtendimento || !horario) {
-    //   alert("Preencha com suas informações");
-    //   return;
-    // }
-
     axios
       .post("http://localhost:8080/api/agendamento", AgendamentoRequest)
       .then(() => {
@@ -81,6 +76,7 @@ function Avaliacao() {
 
   return (
     <>
+
       <MenuSistema tela="Avaliacao" />
       <div style={styles.container}>
         {/* <div id="botao" style={styles.botoes}>
@@ -92,23 +88,28 @@ function Avaliacao() {
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
-                                      <center> <Image src='/logoprovisorio.png' size='medium' /> </center>
-              
-              <h3 style={styles.title}>Avaliação de Nossos Serviços</h3>
+              <center> <Image src='/favicon.ico' size='medium' /> </center>
+
+              <h3 style={styles.title}> Deixe sua avaliação </h3>
               <Form style={styles.form}>
                 <Form.Field>
-                  <label>Nome Completo</label>
+                  <label style={{ color: "#bb872e" }}> Nome Completo </label>
                   <input
                     type="text"
                     name="nome"
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
                     placeholder="Informe seu Nome"
+                    style={{
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e",
+                    }}
                   />
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Serviço</label>
+                  <label style={{ color: "#bb872e" }}>Serviço</label>
                   <Dropdown
                     placeholder="Selecione um serviço"
                     fluid
@@ -117,13 +118,18 @@ function Avaliacao() {
                     options={servicosOptions}
                     value={servico}
                     onChange={(e, data) => setServico(data.value)}
+                    style={{
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e",
+                    }}
                   />
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Barbeiro</label>
+                  <label style={{ color: "#bb872e" }}> Barbeiro </label>
                   <Dropdown
-                    placeholder="Selecione qual foi o barbeiro do seu Serviço"
+                    placeholder="Selecione o profissional responsável por seu atendimento"
                     fluid
                     selection
                     name="barbeiro"
@@ -141,6 +147,8 @@ function Avaliacao() {
                               height: "30px",
                               borderRadius: "50%",
                               marginRight: "10px",
+                              color: "white",
+                              border: "1px solid #bb872e",
                             }}
                           />
                           <span>{b.text}</span>
@@ -149,6 +157,11 @@ function Avaliacao() {
                     }))}
                     value={barbeiro}
                     onChange={handleSelecionarBarbeiro}
+                    style={{
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e",
+                    }}
                   />
 
                   {fotoBarbeiro && (
@@ -164,33 +177,52 @@ function Avaliacao() {
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Observações</label>
+                  <label style={{ color: "#bb872e" }}> Avaliação do Serviço</label>
+                  <Rating
+                    maxRating={5}
+                    clearable
+                    icon="star"
+                    size="large"
+                    rating={nota}
+                    onRate={(e, { rating }) => setNota(rating)}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label style={{ color: "#bb872e" }}> Observações </label>
                   <textarea
                     name="observacoes"
                     value={observacoes}
                     onChange={(e) => setObservacoes(e.target.value)}
                     placeholder="Descreva suas Observações"
+                    style={{
+                      backgroundColor: "#0a0803",
+                      color: "white",
+                      border: "1px solid #bb872e",
+                    }}
                   />
                 </Form.Field>
 
-                <Button
-                  className="ui button"
-                  inverted
-                  circular
-                  icon
-                  labelPosition="left"
-                  color="blue"
-                  floated="right"
-                  onClick={enviar}
-                >
-                  <Icon name="save" />
-                  Enviar
-                </Button>
-              </Form>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </div>
+              <Button
+                onClick={enviar}
+                icon
+                labelPosition="left"
+                style={{
+                  backgroundColor: "#bb872e",
+                  color: "white",
+                  fontWeight: "bold",
+                  marginTop: "1em"
+                }}
+                fluid
+                size="large"
+              >
+                <Icon name="save" />
+                Enviar
+              </Button>
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div >
     </>
   );
 }
@@ -211,9 +243,11 @@ const styles = {
     fontSize: "30px",
     marginBottom: "60px",
     textAlign: "center",
+    color: "#d19f4a",
+    fontfamily: "Arial, sans-serif",
   },
   form: {
-    backgroundColor: "#F1DCBA",
+    backgroundColor: "#0a0803",
     padding: "10px",
     borderRadius: "12px",
     boxShadow: "0 2px 10px rgba(211, 25, 25, 0.1)",
@@ -222,6 +256,8 @@ const styles = {
     gap: "10px",
     maxWidth: "1000px",
     width: "400%",
+    color: "white",
+    border: "1px solid #bb872e",
   },
   foto: {
     width: "80px",
@@ -236,6 +272,6 @@ const styles = {
     position: "relative",
     top: "-200px",
     width: "118%",
-    borderRadius: "20px",
+    
   },
 };

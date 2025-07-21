@@ -51,7 +51,7 @@ function LoginForm() {
             as="h2"
             style={{
               color: "#bb872e",
-              fontFamily: "'Palatino', 'Palatino Linotype', 'Book Antiqua', serif",
+
             }}
             textAlign="center"
           >

@@ -84,13 +84,6 @@ const MenuSistema = ({ tela }) => {
           >
             Agendar Agora
           </Menu.Item>
-
-
-          <Menu.Item>
-            <Button basic icon className={styles.carrinhoButton}>
-              <Icon name="add shopping cart" className={styles.carrinhoIcon} />
-            </Button>
-          </Menu.Item>
           
           {/* Aqui começa o menu do administrador */}
           <Menu.Item
