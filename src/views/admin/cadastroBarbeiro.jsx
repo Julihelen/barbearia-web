@@ -60,11 +60,15 @@ function CadastroBarbeiro() {
     <>
       <TopMenu />
       <MenuAdmin tela={"Cadastrar barbeiro"} />
-      <div className="ui container">
-        <Grid columns={2} divided stackable>
+      <div style={{ textAlign: "center", marginBottom: "1em" }}></div>
+      <div
+        className="ui container"
+        style={{ maxWidth: "300px", marginTop: "2em" }}
+      >
+        <Grid stackable centered>
           <Grid.Row>
-            <Grid.Column width={7}>
-              <h3> Cadastro de Barbeiros </h3>
+            <Grid.Column width={8}>
+              <h3>Cadastro de Barbeiros</h3>
               <Form className="ui form form-segment" widths="equal">
                 <Form.Field>
                   <label>Nome Completo</label>
@@ -125,24 +129,26 @@ function CadastroBarbeiro() {
                     placeholder="Email"
                   />
                 </Form.Field>
-                <Form.Field>
-                  <label>Começo do expediente</label>
-                  <input
-                    type="time"
-                    name="atendimentoInicio"
-                    value={atendimentoInicio}
-                    onChange={(e) => setAtendimentoInicio(e.target.value)}
-                    placeholder="Selecione o horário"
-                  />
-                  <label>Fim do expediente</label>
-                  <input
-                    type="time"
-                    name="atendimentoFim"
-                    value={atendimentoFim}
-                    onChange={(e) => setAtendimentoFim(e.target.value)}
-                    placeholder="Selecione o horário"
-                  />
-                </Form.Field>
+                <Form.Group widths="equal">
+                  <Form.Field>
+                    <label>Começo do expediente</label>
+                    <input
+                      type="time"
+                      name="atendimentoInicio"
+                      value={atendimentoInicio}
+                      onChange={(e) => setAtendimentoInicio(e.target.value)}
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <label>Fim do expediente</label>
+                    <input
+                      type="time"
+                      name="atendimentoFim"
+                      value={atendimentoFim}
+                      onChange={(e) => setAtendimentoFim(e.target.value)}
+                    />
+                  </Form.Field>
+                </Form.Group>
                 <Form.Field>
                   <label>Skills do Barbeiro</label>
                   <Form.Dropdown
@@ -167,7 +173,6 @@ function CadastroBarbeiro() {
                   />
                 </Form.Field>
                 <Button
-                  align="center"
                   className="ui button"
                   inverted
                   circular

@@ -9,7 +9,7 @@ const Footer = () => {
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={6}>
-              <Header inverted as='h4' content='Barbearia' className={styles.footerHeader} />
+              <Header inverted as='h4' content='Barbearia Chefe' className={styles.footerHeader} />
               <p className={styles.footerText}>
                 Qualidade e estilo em cada corte. Agende seu horário e transforme seu visual.
               </p>
@@ -40,7 +40,7 @@ const Footer = () => {
           </Grid.Row>
         </Grid>
         <div className={styles.copyrightText}>
-          &copy; {new Date().getFullYear()} Barbearia. Todos os direitos reservados.
+          &copy; {new Date().getFullYear()} Barbearia Chefe. Todos os direitos reservados.
         </div>
       </Container>
     </Segment>
