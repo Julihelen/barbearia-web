@@ -1,75 +1,95 @@
-import { useEffect, useState } from "react";
-import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
+import {
+  Button,
+  Container,
+  Dropdown,
+  Form,
+  Header,
+  Input,
+  TextArea,
+} from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
+import "../home/styles/Home.module.css";
 
-// Função utilitária para obter o dia da semana
-const obterDiaDaSemana = (dataStr) => {
-  const dias = [
-    "SUNDAY",
-    "MONDAY",
-    "TUESDAY",
-    "WEDNESDAY",
-    "THURSDAY",
-    "FRIDAY",
-    "SATURDAY",
-  ];
-  const data = new Date(dataStr);
-  return dias[data.getDay()];
-};
-
-// BARBEIRO (PARA SER DESCONTINUADO)
-const servicosOptions = [
-  { key: "corte", text: "Corte de Cabelo", value: "Corte de Cabelo" },
-  { key: "barba", text: "Barba", value: "Barba" },
-  { key: "sobrancelha", text: "Sobrancelha", value: "Sobrancelha" },
-];
-
-const barbeirosData = [
-  {
-    key: "joao",
-    text: "João",
-    value: "João",
-    foto: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    key: "maria",
-    text: "Maria",
-    value: "Maria",
-    foto: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    key: "carlos",
-    text: "Carlos",
-    value: "Carlos",
-    foto: "https://randomuser.me/api/portraits/men/68.jpg",
-  },
-];
-
-// function logar() {
-//   alert("Você será direcionado para página de login");
-//   window.location.href = "/login-cliente";
-// }
-
-// function cadastrar() {
-//   alert("Você será direcionado para página de cadastro");
-//   window.location.href = "/form-cliente";
-// }
-
-function Agendamento() {
-  const [nome, setNome] = useState();
-  const [servico, setServico] = useState();
-  const [dataAtendimento, setDataAtendimento] = useState();
-  const [horario, setHorario] = useState();
-  const [barbeiro, setBarbeiro] = useState();
-  const [observacoes, setObservacoes] = useState();
+export default function Agendamento() {
+  const [nome, setNome] = useState("");
+  const [servico, setServico] = useState(null);
+  const [dataAtendimento, setDataAtendimento] = useState("");
+  const [horario, setHorario] = useState(null);
+  const [barbeiro, setBarbeiro] = useState(null);
+  const [observacoes, setObservacoes] = useState("");
   const [fotoBarbeiro, setFotoBarbeiro] = useState(null);
-  const [horariosDisponiveis, setHorariosDisponiveis] = useState([]); // ✅ agora dentro do componente
 
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
+  const [barbeirosOptions, setBarbeirosOptions] = useState([]);
+  const [servicosOptions, setServicosOptions] = useState([]);
+
+  // Buscar serviços do backend para popular o dropdown
   useEffect(() => {
-    if (!barbeiro || !dataAtendimento) return;
+    axios
+      .get("http://localhost:8080/api/servicos")
+      .then((res) => {
+        const options = res.data.map((s) => ({
+          key: s.id,
+          text: s.titulo,
+          value: s.id, // antes estava s.titulo
+        }));
+        setServicosOptions(options);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar serviços:", err);
+        setServicosOptions([]);
+      });
+  }, []);
 
-    const diaSemana = obterDiaDaSemana(dataAtendimento);
+  // Buscar barbeiros disponíveis pelo serviço
+    useEffect(() => {
+      if (!servico) {
+        setBarbeirosOptions([]);
+        setBarbeiro(null);
+        setFotoBarbeiro(null);
+        return;
+      }
+
+      axios
+        .get(`http://localhost:8080/api/barbeiros/por-servico/${servico}`)
+        .then((res) => {
+          const barbeiros = res.data.map((b) => ({
+            key: b.id,
+            text: b.nome,
+            value: b.id,
+            image: {
+              avatar: true,
+              src: b.foto || "https://via.placeholder.com/150",
+            },
+          }));
+          setBarbeirosOptions(barbeiros);
+        })
+        .catch((err) => {
+          console.error("Erro ao buscar barbeiros:", err);
+          setBarbeirosOptions([]);
+        });
+    }, [servico]);
+
+  // Buscar horários disponíveis do barbeiro selecionado e data
+  useEffect(() => {
+    if (!barbeiro || !dataAtendimento) {
+      setHorariosDisponiveis([]);
+      setHorario(null);
+      return;
+    }
+
+    const diasSemana = [
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+    ];
+    const diaSemana = diasSemana[new Date(dataAtendimento).getDay()];
 
     axios
       .get(`http://localhost:8080/api/disponibilidade/${barbeiro}`, {
@@ -87,9 +107,15 @@ function Agendamento() {
         console.error("Erro ao buscar horários:", err);
         setHorariosDisponiveis([]);
       });
-  }, [barbeiro, dataAtendimento]); // ✅ também movido para dentro
+  }, [barbeiro, dataAtendimento]);
 
+  // Função para agendar atendimento
   function agendar() {
+    if (!barbeiro || !nome || !dataAtendimento || !horario || !servico) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+
     const AgendamentoRequest = {
       nome,
       servico,
@@ -99,250 +125,122 @@ function Agendamento() {
       observacoes,
     };
 
-    if (!barbeiro || !nome || !dataAtendimento || !horario) {
-      alert("Preencha com suas informações");
-      return;
-    }
-
     axios
       .post("http://localhost:8080/api/agendamento", AgendamentoRequest)
       .then(() => {
-        console.log("Barbeiro agendado com sucesso.");
+        alert("Agendamento realizado com sucesso!");
+        // Limpar formulário se desejar:
+        setNome("");
+        setServico(null);
+        setBarbeiro(null);
+        setFotoBarbeiro(null);
+        setDataAtendimento("");
+        setHorario(null);
+        setObservacoes("");
+        setBarbeirosOptions([]);
+        setHorariosDisponiveis([]);
       })
       .catch((error) => {
-        console.error(
-          "Erro ao incluir o agendamento:",
-          error.response?.data || error.message
-        );
+        console.error("Erro ao agendar:", error);
+        alert("Erro ao realizar agendamento, tente novamente.");
       });
   }
-
-  const handleSelecionarBarbeiro = (e, data) => {
-    setBarbeiro(data.value);
-    const selecionado = barbeirosData.find((b) => b.value === data.value);
-    setFotoBarbeiro(selecionado?.foto || null);
-  };
 
   return (
     <>
       <MenuSistema tela="agendamento" />
-      <div style={styles.container}>
-        {/* <div id="botao" style={styles.botoes}>
-          <Button onClick={logar} primary>Login</Button>
-          <Button onClick={cadastrar} secondary>Cadastrar</Button>
-        </div> */}
+      <div className="background-container">
+        <Container className="form-agendamento">
+          <Header as="h2" className="form-header">
+            Agendamento
+          </Header>
 
-        <Grid stackable centered>
-          <Grid.Row>
-            <Grid.Column mobile={16} tablet={8} computer={8}>
-              <center>
-                <Image src="/logoprovisorio.png" size="medium" /> 
-              </center>
+          <Form>
+            <Form.Field>
+              <label>Nome:</label>
+              <Input
+                placeholder="Digite seu nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              />
+            </Form.Field>
 
-              <h3 style={styles.title}>Agendamento de Serviço</h3>
-              <h3 style={{ color: "#bb872e", textAlign: "center" }}> </h3>
-              <Form style={styles.form}>
-                <Form.Field>
-                  <label style={{ color: "#bb872e" }}>Nome Completo</label>
-                  <input
-                    type="text"
-                    name="nome"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                    placeholder="Nome do Cliente"
-                    style={{
-                      backgroundColor: "#0a0803",
-                      color: "white",
-                      border: "1px solid #bb872e"
-                    }}
-                  />
-                </Form.Field>
+            <Form.Field>
+              <label>Serviço:</label>
+              <Dropdown
+                placeholder="Selecione um serviço"
+                fluid
+                selection
+                options={servicosOptions}
+                value={servico}
+                onChange={(e, data) => setServico(data.value)}
+              />
+            </Form.Field>
 
-                <Form.Field>
-                  <label style={{ color: "#bb872e" }}> Data de Atendimento</label>
-                  <input
-                    type="date"
-                    name="dataAtendimento"
-                    value={dataAtendimento}
-                    onChange={(e) => setDataAtendimento(e.target.value)}
-                    style={{
-                      backgroundColor: "#0a0803",
-                      color: "white",
-                      border: "1px solid #bb872e"
-                    }}
-                  />
-                </Form.Field>
+            <Form.Field>
+              <label>Barbeiro:</label>
+              <Dropdown
+                placeholder="Selecione um barbeiro"
+                fluid
+                selection
+                options={barbeirosOptions}
+                value={barbeiro}
+                onChange={(e, data) => {
+                  setBarbeiro(data.value);
+                  const selecionado = barbeirosOptions.find(
+                    (b) => b.value === data.value
+                  );
+                  setFotoBarbeiro(selecionado?.image?.src || null);
+                }}
+                disabled={!servico}
+              />
+              {fotoBarbeiro && (
+                <img
+                  src={fotoBarbeiro}
+                  alt="Foto do barbeiro"
+                  className="foto-barbeiro"
+                />
+              )}
+            </Form.Field>
 
-                <Form.Field>
-                  <label style={{ color: "#bb872e" }}> Serviço</label>
-                  <Dropdown
-                    placeholder="Selecione um serviço"
-                    fluid
-                    selection
-                    name="servico"
-                    options={servicosOptions}
-                    value={servico}
-                    onChange={(e, data) => setServico(data.value)}
-                    style={{
-                      backgroundColor: "#0a0803",
-                      color: "white",
-                      border: "1px solid #bb872e"
-                    }}
-                  />
-                </Form.Field>
+            <Form.Field>
+              <label>Data:</label>
+              <Input
+                type="date"
+                value={dataAtendimento}
+                onChange={(e) => setDataAtendimento(e.target.value)}
+                disabled={!barbeiro}
+              />
+            </Form.Field>
 
-                <Form.Field>
-                  <label style={{ color: "#bb872e" }}>Barbeiro</label>
-                  <Dropdown
-                    placeholder="Selecione um barbeiro"
-                    fluid
-                    selection
-                    name="barbeiro"
-                    options={barbeirosData.map((b) => ({
-                      key: b.key,
-                      text: b.text,
-                      value: b.value,
-                      content: (
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <img
-                            src={b.foto}
-                            alt={b.text}
-                            style={{
-                              width: "30px",
-                              height: "30px",
-                              borderRadius: "50%",
-                              borderColor: "#bb872e",
-                              marginRight: "10px",
-                              backgroundColor: "#0a0803",
-                              color: "white",
-                              border: "1px solid #bb872e"
-                            }}
-                          />
-                          <span>{b.text}</span>
-                        </div>
-                      ),
-                    }))}
-                    value={barbeiro}
-                    onChange={handleSelecionarBarbeiro}
-                  />
+            <Form.Field>
+              <label>Horário:</label>
+              <Dropdown
+                placeholder="Selecione um horário"
+                fluid
+                selection
+                options={horariosDisponiveis}
+                value={horario}
+                onChange={(e, data) => setHorario(data.value)}
+                disabled={!dataAtendimento}
+              />
+            </Form.Field>
 
-                  {fotoBarbeiro && (
-                    <div style={{ marginTop: "10px", textAlign: "center" }}>
-                      <img
-                        src={fotoBarbeiro}
-                      alt="Foto do barbeiro"
-                      style={{
-                        ...styles.foto,
-                        backgroundColor: "#0a0803",
-                        color: "white",
-                        border: "1px solid #bb872e"
-                      }}
-                    />
-                      <p style={{ marginTop: "5px" }}>{barbeiro}</p>
-                    </div>
-                  )}
-                </Form.Field>
+            <Form.Field>
+              <label>Observações:</label>
+              <TextArea
+                placeholder="Alguma preferência ou observação?"
+                value={observacoes}
+                onChange={(e) => setObservacoes(e.target.value)}
+              />
+            </Form.Field>
 
-                <Form.Field>
-                  <label style={{ color: "#bb872e" }}> Horário</label>
-                  <Dropdown
-                    placeholder="Selecione um horário"
-                    fluid
-                    selection
-                    name="horario"
-                    options={horariosDisponiveis}
-                    value={horario}
-                    onChange={(e, data) => setHorario(data.value)}
-                    disabled={!horariosDisponiveis.length}
-                    style={{
-                      backgroundColor: "#0a0803!important",
-                      color: "white",
-                      border: "1px solid #bb872e"
-                    }}
-                  />
-                </Form.Field>
-
-                <Form.Field>
-                  <label style={{ color: "#bb872e" }}> Observações</label>
-                  <textarea
-                    name="observacoes"
-                    value={observacoes}
-                    onChange={(e) => setObservacoes(e.target.value)}
-                    placeholder="Alergias, preferências, detalhes"
-                    style={{
-                      backgroundColor: "#0a0803",
-                      color: "white",
-                      border: "1px solid #bb872e",
-                      height: "100px",
-                      resize: "none",
-                    }}
-                  />
-                </Form.Field>
-
-                <Button
-                  className="ui button"
-                  inverted
-                  circular
-                  icon
-                  labelPosition="left"
-                  color="#bb872e"
-                  floated="right"
-                  onClick={agendar}
-                >
-                  <Icon name="save" />
-                  Agendar
-                </Button>
-              </Form>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+            <Button onClick={agendar} color="green">
+              Agendar
+            </Button>
+          </Form>
+        </Container>
       </div>
     </>
   );
 }
-
-export default Agendamento;
-
-const styles = {
-  container: {
-    minHeight: "50vh",
-    backgroundColor: "0a0803",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    padding: "200px",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: "30px",
-    marginBottom: "60px",
-    textAlign: "center",
-  },
-  form: {
-    backgroundColor: "#0a0803",
-    padding: "10px",
-    borderRadius: "12px",
-    border: "1px solid #bb872e",
-    boxShadow: "0 0 10px rgba(187, 135, 46, 0.2)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    maxWidth: "1000px",
-    width: "400%",
-  },
-  foto: {
-    width: "80px",
-    height: "80px",
-    borderRadius: "50%",
-    objectFit: "cover",
-  },
-  botoes: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "10px",
-    position: "relative",
-    top: "-200px",
-    width: "118%",
-    borderRadius: "20px",
-  },
-};
