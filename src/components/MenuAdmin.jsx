@@ -4,7 +4,7 @@ import { Menu, Icon } from 'semantic-ui-react';
 const MenuAdmin = ({ activeItem = '', onMenuClick = () => { } }) => {
   return (
     <>
-      <Menu vertical fixed='left' inverted style={{ height: '200vh', marginTop: '3.5em' }}>
+      <Menu vertical fixed='left' inverted style={{ height: '100vh', marginTop: '3.5em' }}>
         <Menu.Item
           name='dashboard'
           active={activeItem === 'dashboard'}

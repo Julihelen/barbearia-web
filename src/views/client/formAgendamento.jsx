@@ -151,10 +151,9 @@ export default function Agendamento() {
       <MenuSistema tela="agendamento" />
       <div className="background-container">
         <Container className="form-agendamento">
-          <Header as="h2" className="form-header">
-            Agendamento
+          <Header as="h2" className="form-header" style={{ color: "#bb872e" }}>
+            Agendamento de serviço 
           </Header>
-
           <Form>
             <Form.Field>
               <label>Nome:</label>

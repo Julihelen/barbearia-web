@@ -194,3 +194,10 @@
 
 
 }
+.form-agendamento {
+  max-width: 200px; 
+  margin: 0 auto;  
+  padding: 0px;
+  background: white; 
+  border-radius: 8px;
+}

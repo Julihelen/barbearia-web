@@ -60,10 +60,12 @@ function CadastroBarbeiro() {
     <>
       <TopMenu />
       <MenuAdmin tela={"Cadastrar barbeiro"} />
-      <div style={{ textAlign: "center", marginBottom: "1em" }}></div>
+      <div style={{ textAlign: "center", marginBottom: "10em" }}></div>
       <div
         className="ui container"
-        style={{ maxWidth: "300px", marginTop: "2em" }}
+        style={{
+          
+        }}
       >
         <Grid stackable centered>
           <Grid.Row>

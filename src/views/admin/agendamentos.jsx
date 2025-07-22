@@ -21,9 +21,8 @@ function Agendamentos() {
     <>
     <TopMenu />
       <MenuSistema tela="admin" />
-      <Container style={{ marginTop: "4em" }}>
-
-        <Header style={{ color: "white" }} as="h2"> Painel do Administrador - Agendamentos</Header>
+      <Container style={{ marginTop: "5em", maxWidth: "700px", margin: "5em auto" }}>
+        <Header style={{ color: "white" }} as="h2"> Agendamentos</Header>
         <Table celled striped>
           <Table.Header>
             <Table.Row>

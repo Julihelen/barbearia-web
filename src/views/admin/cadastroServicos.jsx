@@ -74,7 +74,7 @@ if (!servico || !observacoes) {
                 <Form.Field>
                   <label>Serviço</label>
                   <Dropdown
-                        placeholder="Selecione um serviço"
+                    placeholder="Selecione um serviço"
                     fluid
                     selection
                     name="servico"
@@ -136,10 +136,9 @@ const styles = {
     textAlign: "center",
   },
   form: {
-    backgroundColor: "#F1DCBA",
+    backgroundColor: "#bb872e",
     padding: "10px",
-    borderRadius: "12px",
-    boxShadow: "0 2px 10px rgba(211, 25, 25, 0.1)",
+    borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
     gap: "10px",
