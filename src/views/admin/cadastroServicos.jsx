@@ -20,22 +20,24 @@ const servicosOptions = [
 function Agendamento() {
   const [servico, setServico] = useState();
   const [observacoes, setObservacoes] = useState();
+  const [tempoMedio, setTempoMedio] = useState('');
+  const [preco, setPreco] = useState('');
 
   function salvar() {
     const ServicosRequest = {
       servico,
       observacoes,
+      tempoMedio,
+      preco,
+
     };
 
-if (!servico || !observacoes) {
-   alert("Preencha com suas informações");
+    if (!servico || !observacoes) {
+      alert("Preencha com suas informações");
 
-}
+    }
 
-
-    
     alert("Serviço cadastrado com Sucesso !")
-   
 
     axios
       .post("http://localhost:8080/api/servicos", ServicosRequest)
@@ -50,28 +52,18 @@ if (!servico || !observacoes) {
       });
   }
 
-  
-
   return (
     <>
-    <TopMenu />
+      <TopMenu />
       <MenuSistema tela="cadastroServico" />
       <div style={styles.container}>
-        {/* <div id="botao" style={styles.botoes}>
-          <Button onClick={logar} primary>Login</Button>
-          <Button onClick={cadastrar} secondary>Cadastrar</Button>
-        </div> */}
-
 
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
 
-                
               <h3 style={styles.title}>Cadastrar Serviço</h3>
               <Form style={styles.form}>
-                
-               
 
                 <Form.Field>
                   <label>Serviço</label>
@@ -85,10 +77,6 @@ if (!servico || !observacoes) {
                     onChange={(e, data) => setServico(data.value)}
                   />
                 </Form.Field>
-
-                
-
-              
                 <Form.Field>
                   <label>Observações</label>
                   <textarea
@@ -96,8 +84,35 @@ if (!servico || !observacoes) {
                     value={observacoes}
                     onChange={(e) => setObservacoes(e.target.value)}
                   />
+                  <Form.Field>
+                    <label>Preço</label>
+                    <input
+                      type="number"
+                      name="preco"
+                      value={preco}
+                      onChange={(e) => setPreco(e.target.value)}
+                      placeholder="Ex: 40.00"
+                      min="0"
+                      step="0.01" 
+                    />
+
+                  </Form.Field>
+                </Form.Field>
+                <Form.Field>
+                  <label>Tempo Médio de Atendimento (Em minutos) </label>
+                  <input
+                    type="number"
+                    name="tempoMedio"
+                    value={tempoMedio}
+                    onChange={(e) => setTempoMedio(e.target.value)}
+                    placeholder="Ex: 45"
+                    min="5"
+                    max="180"
+                    step="5"
+                  />
                 </Form.Field>
 
+<<<<<<< HEAD
                 <Button
                   className="ui button"
                   inverted
@@ -118,6 +133,26 @@ if (!servico || !observacoes) {
       </div>
                   <Footer />
       
+=======
+              <Button
+                className="ui button"
+                inverted
+                circular
+                icon
+                labelPosition="left"
+                color="blue"
+                floated="right"
+                onClick={salvar}
+              >
+                <Icon name="save" />
+                Salvar
+              </Button>
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div >
+>>>>>>> 1a78a8f46be4d89bf3a0e467e79ca05644538c1e
     </>
   );
 }
@@ -164,4 +199,5 @@ const styles = {
     width: "118%",
     borderRadius: "20px",
   },
+
 };
