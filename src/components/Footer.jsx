@@ -1,6 +1,8 @@
 import React from 'react';
 import { Segment, Container, Grid, List, Header, Icon } from 'semantic-ui-react';
 import styles from '../views/home/styles/Home.module.css';
+import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
   return (
@@ -17,9 +19,9 @@ const Footer = () => {
             <Grid.Column width={5}>
               <Header inverted as='h4' content='Links Úteis' className={styles.footerHeader} />
               <List link inverted>
-                <List.Item as='a' className={styles.footerLink}>Serviços</List.Item>
-                <List.Item as='a' className={styles.footerLink}>Agendamento</List.Item>
-                <List.Item as='a' className={styles.footerLink}>Sobre Nós</List.Item>
+                <List.Item as={Link} to="/ConsultaServicos"className={styles.footerLink}>Serviços</List.Item>
+                <List.Item as={Link} to="/FormAgendamento" className={styles.footerLink}>Agendamento</List.Item>
+                <List.Item as={Link}  to="/Sobre" className={styles.footerLink}>Sobre Nós</List.Item>
                 <List.Item as='a' className={styles.footerLink}>FAQ</List.Item>
               </List>
             </Grid.Column>
