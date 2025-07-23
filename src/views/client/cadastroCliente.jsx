@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Form, Button, Grid, Icon, Header, Image, Segment, Message } from 'semantic-ui-react';
 import axios from 'axios';
 import MenuSistema from "../../components/Menu";
+import Footer from '../../components/Footer';
+
+
 
 function CadastroCliente() {
   const [nome, setNome] = useState('');
@@ -181,7 +184,12 @@ function CadastroCliente() {
             </Form>
           </Segment>
         </Grid.Column>
+        
+        
+        
       </Grid>
+      <Footer />
+
     </>
   );
 }

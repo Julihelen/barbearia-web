@@ -3,6 +3,8 @@ import { Table, Container, Header, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/MenuAdmin";
 import axios from "axios";
 import TopMenu from "../../components/TopMenu";
+import Footer from '../../components/Footer';
+
 
 function Agendamentos() {
   const [agendamentos, setAgendamentos] = useState([]);
@@ -49,6 +51,8 @@ function Agendamentos() {
           </Table.Body>
         </Table>
       </Container>
+                  <Footer />
+      
     </>
   );
 }

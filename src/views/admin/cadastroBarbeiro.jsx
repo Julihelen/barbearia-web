@@ -4,6 +4,8 @@ import MenuAdmin from "../../components/MenuAdmin";
 import TopMenu from "../../components/TopMenu";
 import axios from "axios";
 import "semantic-ui-less/semantic.less";
+import Footer from '../../components/Footer';
+
 
 //skills do barbeiro - futuramente vindo direto do banco
 const skillOptions = [
@@ -192,6 +194,8 @@ function CadastroBarbeiro() {
           </Grid.Row>
         </Grid>
       </div>
+                  <Footer />
+      
     </>
   );
 }

@@ -3,6 +3,8 @@ import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/MenuAdmin";
 import axios from "axios";
 import TopMenu from "../../components/TopMenu";
+import Footer from '../../components/Footer';
+
 
 const servicosOptions = [
   { key: "corte", text: "Corte de Cabelo", value: "Corte de Cabelo" },
@@ -114,6 +116,8 @@ if (!servico || !observacoes) {
           </Grid.Row>
         </Grid>
       </div>
+                  <Footer />
+      
     </>
   );
 }
