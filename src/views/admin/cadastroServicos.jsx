@@ -112,7 +112,7 @@ function Agendamento() {
                   />
                 </Form.Field>
 
-<<<<<<< HEAD
+
                 <Button
                   className="ui button"
                   inverted
@@ -133,26 +133,6 @@ function Agendamento() {
       </div>
                   <Footer />
       
-=======
-              <Button
-                className="ui button"
-                inverted
-                circular
-                icon
-                labelPosition="left"
-                color="blue"
-                floated="right"
-                onClick={salvar}
-              >
-                <Icon name="save" />
-                Salvar
-              </Button>
-            </Form>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </div >
->>>>>>> 1a78a8f46be4d89bf3a0e467e79ca05644538c1e
     </>
   );
 }
