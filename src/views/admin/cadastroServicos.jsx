@@ -85,46 +85,49 @@ function Agendamento() {
                   <Form.Field>
                     <label>Preço</label>
                     <input
-                      type="text"
+                      type="number"
                       name="preco"
                       value={preco}
                       onChange={(e) => setPreco(e.target.value)}
-                      placeholder="Ex: R$ 40,00"
+                      placeholder="Ex: 40.00"
+                      min="0"
+                      step="0.01" 
                     />
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Tempo Médio de Atendimento </label>
-                    <input
-                      type="number"
-                      name="tempoMedio"
-                      value={tempoMedio}
-                      onChange={(e) => setTempoMedio(e.target.value)}
-                      placeholder="Ex: 45"
-                      min="5"
-                      max="180"
-                      step="5"
-                    />
-                  </Form.Field>
 
+                  </Form.Field>
                 </Form.Field>
-                <Button
-                  className="ui button"
-                  inverted
-                  circular
-                  icon
-                  labelPosition="left"
-                  color="blue"
-                  floated="right"
-                  onClick={salvar}
-                >
-                  <Icon name="save" />
-                  Salvar
-                </Button>
-              </Form>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </div>
+                <Form.Field>
+                  <label>Tempo Médio de Atendimento (Em minutos) </label>
+                  <input
+                    type="number"
+                    name="tempoMedio"
+                    value={tempoMedio}
+                    onChange={(e) => setTempoMedio(e.target.value)}
+                    placeholder="Ex: 45"
+                    min="5"
+                    max="180"
+                    step="5"
+                  />
+                </Form.Field>
+
+              <Button
+                className="ui button"
+                inverted
+                circular
+                icon
+                labelPosition="left"
+                color="blue"
+                floated="right"
+                onClick={salvar}
+              >
+                <Icon name="save" />
+                Salvar
+              </Button>
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div >
     </>
   );
 }
