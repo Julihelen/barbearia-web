@@ -18,22 +18,24 @@ const servicosOptions = [
 function Agendamento() {
   const [servico, setServico] = useState();
   const [observacoes, setObservacoes] = useState();
+  const [tempoMedio, setTempoMedio] = useState('');
+  const [preco, setPreco] = useState('');
 
   function salvar() {
     const ServicosRequest = {
       servico,
       observacoes,
+      tempoMedio,
+      preco,
+
     };
 
-if (!servico || !observacoes) {
-   alert("Preencha com suas informações");
+    if (!servico || !observacoes) {
+      alert("Preencha com suas informações");
 
-}
+    }
 
-
-    
     alert("Serviço cadastrado com Sucesso !")
-   
 
     axios
       .post("http://localhost:8080/api/servicos", ServicosRequest)
@@ -48,28 +50,18 @@ if (!servico || !observacoes) {
       });
   }
 
-  
-
   return (
     <>
-    <TopMenu />
+      <TopMenu />
       <MenuSistema tela="cadastroServico" />
       <div style={styles.container}>
-        {/* <div id="botao" style={styles.botoes}>
-          <Button onClick={logar} primary>Login</Button>
-          <Button onClick={cadastrar} secondary>Cadastrar</Button>
-        </div> */}
-
 
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
 
-                
               <h3 style={styles.title}>Cadastrar Serviço</h3>
               <Form style={styles.form}>
-                
-               
 
                 <Form.Field>
                   <label>Serviço</label>
@@ -83,10 +75,6 @@ if (!servico || !observacoes) {
                     onChange={(e, data) => setServico(data.value)}
                   />
                 </Form.Field>
-
-                
-
-              
                 <Form.Field>
                   <label>Observações</label>
                   <textarea
@@ -94,8 +82,31 @@ if (!servico || !observacoes) {
                     value={observacoes}
                     onChange={(e) => setObservacoes(e.target.value)}
                   />
-                </Form.Field>
+                  <Form.Field>
+                    <label>Preço</label>
+                    <input
+                      type="text"
+                      name="preco"
+                      value={preco}
+                      onChange={(e) => setPreco(e.target.value)}
+                      placeholder="Ex: R$ 40,00"
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <label>Tempo Médio de Atendimento </label>
+                    <input
+                      type="number"
+                      name="tempoMedio"
+                      value={tempoMedio}
+                      onChange={(e) => setTempoMedio(e.target.value)}
+                      placeholder="Ex: 45"
+                      min="5"
+                      max="180"
+                      step="5"
+                    />
+                  </Form.Field>
 
+                </Form.Field>
                 <Button
                   className="ui button"
                   inverted
@@ -160,4 +171,5 @@ const styles = {
     width: "118%",
     borderRadius: "20px",
   },
+
 };
