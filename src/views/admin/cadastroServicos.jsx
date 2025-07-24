@@ -4,6 +4,7 @@ import MenuSistema from "../../components/MenuAdmin";
 import axios from "axios";
 import TopMenu from "../../components/TopMenu";
 
+
 const servicosOptions = [
   { key: "corte", text: "Corte de Cabelo", value: "Corte de Cabelo" },
   { key: "barba", text: "Barba", value: "Barba" },
@@ -103,23 +104,25 @@ function Agendamento() {
                     step="5"
                   />
                 </Form.Field>
-                <Button
-                  className="ui button"
-                  inverted
-                  icon
-                  labelPosition="left"
-                  color="black"
-                  floated="right"
-                  onClick={salvar}
-                >
-                  <Icon name="save" />
-                  Salvar
-                </Button>
-              </Form>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </div >
+
+              <Button
+                className="ui button"
+                inverted
+                circular
+                icon
+                labelPosition="left"
+                color="blue"
+                floated="right"
+                onClick={salvar}
+              >
+                <Icon name="save" />
+                Salvar
+              </Button>
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div >
     </>
   );
 }
