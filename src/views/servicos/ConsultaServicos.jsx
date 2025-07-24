@@ -11,12 +11,12 @@ export default function ListServicos () {
    }, [])
 
    function carregarServicos() {
-
-        axios.get("http://localhost:8080/api/servicos")
+    axios.get("http://localhost:8080/api/servicos")
         .then((response) => {
-           setServicos(response.data)
+            console.log(response.data); // veja o que aparece aqui
+            setServicos(response.data); // ou response.data.content
         })
-    }
+}
 
     return (
         <>

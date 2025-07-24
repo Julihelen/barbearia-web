@@ -11,6 +11,8 @@ import Agendamentos from "../views/admin/agendamentos"
 import CadastroServicos from "../views/admin/cadastroServicos"
 import Dashboard from "../views/admin/dashboard";
 import Sobre from "./Sobre";
+import Barbeiros from '../views/admin/listarBarbeiros';
+import { Panel } from '../components/teste/Panel';
 
 function Rotas() {
   return (
@@ -26,7 +28,8 @@ function Rotas() {
       <Route path="CadastroServicos" element={<CadastroServicos />} />
       <Route path="Dashboard" element={<Dashboard />} />
       <Route path="Sobre" element={<Sobre />} />
-      
+      <Route path="listarBarbeiros" element={<Barbeiros />} />
+      <Route path="Panel" element={<Panel />} />
     </Routes>
   );
 }

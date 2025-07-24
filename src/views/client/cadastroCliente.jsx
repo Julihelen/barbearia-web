@@ -3,6 +3,8 @@ import { Form, Button, Grid, Icon, Header, Image, Segment, Message } from 'seman
 import axios from 'axios';
 import MenuSistema from "../../components/Menu";
 import Footer from '../../components/Footer';
+import InputMask from 'react-input-mask';
+
 
 
 
@@ -47,7 +49,14 @@ function CadastroCliente() {
     axios.post("http://localhost:8080/api/cliente", clienteRequest)
       .then((response) => {
         console.log('Cliente cadastrado com sucesso.');
-        // Limpar o formulário, se quiser
+          // Limpa o formulário:
+          setNome('');
+          setDataNascimento('');
+          setCpf('');
+          setEndereco('');
+          setFoneCelular('');
+          setEmail('');
+          setSenha('');
       })
       .catch((error) => {
         console.log('Erro ao incluir o cliente.');
@@ -112,13 +121,19 @@ function CadastroCliente() {
 
               <Form.Field required error={!cpf && formError}>
                 <label style={{ color: "#bb872e" }}>CPF</label>
-                <input
-                  type="text"
+                <InputMask
+                  mask="999.999.999-99"
                   value={cpf}
                   onChange={e => setCpf(e.target.value)}
-                  placeholder="CPF"
-                  style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
-                />
+                >
+                  {(inputProps) => (
+                    <input
+                      {...inputProps}
+                      placeholder="CPF"
+                      style={{ backgroundColor: "#0a0803", color: "white", borderColor: "#bb872e" }}
+                    />
+                  )}
+                </InputMask>
               </Form.Field>
 
               <Form.Field>

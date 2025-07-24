@@ -94,8 +94,8 @@ export default function Agendamento() {
     const diaSemana = diasSemana[new Date(dataAtendimento).getDay()];
 
     axios
-      .get(`http://localhost:8080/api/disponibilidade/${barbeiro}`, {
-        params: { diaSemana },
+      .get(`http://localhost:8080/api/barbeiros/${barbeiro}/horarios-disponiveis`, {
+        params: { data: dataAtendimento }
       })
       .then((res) => {
         const opcoes = res.data.map((hora) => ({
@@ -106,9 +106,10 @@ export default function Agendamento() {
         setHorariosDisponiveis(opcoes);
       })
       .catch((err) => {
-        console.error("Erro ao buscar horários:", err);
+        console.error("Erro ao buscar horários disponíveis:", err);
         setHorariosDisponiveis([]);
       });
+
   }, [barbeiro, dataAtendimento]);
 
   // Função para agendar atendimento
@@ -128,7 +129,12 @@ export default function Agendamento() {
     };
 
     axios
-      .post("http://localhost:8080/api/agendamento", AgendamentoRequest)
+        .post("http://localhost:8080/api/agendamento", AgendamentoRequest, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+
       .then(() => {
         alert("Agendamento realizado com sucesso!");
         // Limpar formulário se desejar:

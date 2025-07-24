@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
-
+ 
 const MenuAdmin = ({ activeItem = '', onMenuClick = () => { } }) => {
   return (
     <>
@@ -40,11 +40,23 @@ const MenuAdmin = ({ activeItem = '', onMenuClick = () => { } }) => {
         </Menu.Item>
 
         <Menu.Item
-          name='barbeiros'
+          name='Cadastrar Barbeiros'
           active={activeItem === 'barbeiros'}
           onClick={() => onMenuClick('barbeiros')}
           as='a'
           href="/formBarbeiro"
+
+        >
+          <Icon name='users' />
+         Cadastrar barbeiros
+
+        </Menu.Item>
+        <Menu.Item
+          name='Barbeiros'
+          active={activeItem === 'barbeiros'}
+          onClick={() => onMenuClick('barbeiros')}
+          as='a'
+          href="/listarBarbeiros"
 
         >
           <Icon name='users' />
