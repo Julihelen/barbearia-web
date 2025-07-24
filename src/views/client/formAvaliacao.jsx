@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Button, Grid, Icon, Dropdown, Image, Rating } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
+import Footer from '../../components/Footer';
+
 
 const servicosOptions = [
   { key: "corte", text: "Corte de Cabelo", value: "Corte de Cabelo" },
@@ -83,12 +85,12 @@ function Avaliacao() {
           <Button onClick={logar} primary>Login</Button>
           <Button onClick={cadastrar} secondary>Cadastrar</Button>
         </div> */}
+                      <Image  style={{    marginTop: "-200px",     marginLeft: "450px",}} src='/favicon.ico' size='medium'  />
 
 
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
-              <center> <Image src='/favicon.ico' size='medium' /> </center>
 
               <h3 style={styles.title}> Deixe sua avaliação </h3>
               <Form style={styles.form}>
@@ -222,7 +224,22 @@ function Avaliacao() {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+
+      <br />
+    <br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
     </div >
+    
+            <Footer />
+
     </>
   );
 }
@@ -240,24 +257,29 @@ const styles = {
     justifyContent: "center",
   },
   title: {
-    fontSize: "30px",
+    fontSize: "20px",
     marginBottom: "60px",
-    textAlign: "center",
+    textAlign: "right",
     color: "#d19f4a",
-    fontfamily: "Arial, sans-serif",
+    fontFamily: "Arial, sans-serif",
+    
+
   },
   form: {
     backgroundColor: "#0a0803",
-    padding: "10px",
+    padding: "30px",
     borderRadius: "12px",
     boxShadow: "0 2px 10px rgba(211, 25, 25, 0.1)",
     display: "flex",
     flexDirection: "column",
     gap: "10px",
     maxWidth: "1000px",
-    width: "400%",
+    width: "600%",
     color: "white",
     border: "1px solid #bb872e",
+    marginTop: "-40px",
+    marginLeft: "-5px",
+
   },
   foto: {
     width: "80px",

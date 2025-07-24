@@ -10,6 +10,8 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import MenuSistema from "../../components/Menu";
+import Footer from '../../components/Footer';
+
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -157,8 +159,14 @@ function LoginForm() {
           >
             Voltar
           </Button>
+
         </Grid.Column>
+
+
+
       </Grid>
+                                        <Footer />
+
     </>
   );
 }
