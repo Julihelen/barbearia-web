@@ -1,8 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Header, Icon, Modal, Table } from 'semantic-ui-react';
 import MenuSistema from '../../components/Menu';
+=======
+import { Table, Container, Header, Image } from "semantic-ui-react";
+import MenuSistema from "../../components/MenuAdmin";
+import axios from "axios";
+import TopMenu from "../../components/TopMenu";
+>>>>>>> 33c7cc560ae6dfeabac7f8f353ffc1c479b15b51
 
 export default function ListAgendamento() {
     const [lista, setLista] = useState([]);
@@ -29,6 +36,7 @@ export default function ListAgendamento() {
         return `${dia}/${mes}/${ano}`;
     }
 
+<<<<<<< HEAD
     function formatarHorario(horario) {
         if (!horario) return '';
         return horario.substring(0, 5);
@@ -148,4 +156,22 @@ export default function ListAgendamento() {
             </Modal>
         </div>
     );
+=======
+          <Table.Body>
+            {agendamentos.map((ag, i) => (
+              <Table.Row key={i}>
+                <Table.Cell>{ag.nome}</Table.Cell>
+                <Table.Cell>{ag.servico}</Table.Cell>
+                <Table.Cell>{ag.dataAtendimento}</Table.Cell>
+                <Table.Cell>{ag.horario}</Table.Cell>
+                <Table.Cell>{ag.barbeiro}</Table.Cell>
+                <Table.Cell>{ag.observacoes}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </Container>      
+    </>
+  );
+>>>>>>> 33c7cc560ae6dfeabac7f8f353ffc1c479b15b51
 }

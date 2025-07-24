@@ -3,7 +3,6 @@ import { Form, Button, Grid, Icon, Dropdown, Image } from "semantic-ui-react";
 import MenuSistema from "../../components/MenuAdmin";
 import axios from "axios";
 import TopMenu from "../../components/TopMenu";
-import Footer from '../../components/Footer';
 
 
 const servicosOptions = [
@@ -13,9 +12,7 @@ const servicosOptions = [
   { key: "corte+Barba", text: "corte+Barba", value: "corte+Barba" },
   { key: "Barba+sobrancelha", text: "Barba+sobrancelha", value: "Barba+sobrancelha" },
 
-
 ];
-
 
 function Agendamento() {
   const [servico, setServico] = useState();
@@ -57,14 +54,11 @@ function Agendamento() {
       <TopMenu />
       <MenuSistema tela="cadastroServico" />
       <div style={styles.container}>
-
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
-
-              <h3 style={styles.title}>Cadastrar Serviço</h3>
+              <h2 style={styles.title}>Cadastro de Serviços</h2> 
               <Form style={styles.form}>
-
                 <Form.Field>
                   <label>Serviço</label>
                   <Dropdown
@@ -93,9 +87,8 @@ function Agendamento() {
                       onChange={(e) => setPreco(e.target.value)}
                       placeholder="Ex: 40.00"
                       min="0"
-                      step="0.01" 
+                      step="0.01"
                     />
-
                   </Form.Field>
                 </Form.Field>
                 <Form.Field>
@@ -112,27 +105,24 @@ function Agendamento() {
                   />
                 </Form.Field>
 
-
-                <Button
-                  className="ui button"
-                  inverted
-                  circular
-                  icon
-                  labelPosition="left"
-                  color="blue"
-                  floated="right"
-                  onClick={salvar}
-                >
-                  <Icon name="save" />
-                  Salvar
-                </Button>
-              </Form>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </div>
-                  <Footer />
-      
+              <Button
+                className="ui button"
+                inverted
+                circular
+                icon
+                labelPosition="left"
+                color="blue"
+                floated="right"
+                onClick={salvar}
+              >
+                <Icon name="save" />
+                Salvar
+              </Button>
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div >
     </>
   );
 }
@@ -141,43 +131,48 @@ export default Agendamento;
 
 const styles = {
   container: {
-    minHeight: "50vh",
-    backgroundColor: "black",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    padding: "200px",
-    justifyContent: "center",
+    backgroundColor: '#0a0803',
+    padding: '4rem',
+
   },
   title: {
-    fontSize: "30px",
-    marginBottom: "60px",
-    textAlign: "center",
+    color: '#ffffffff',
+    fontSize: '2rem',
+    marginBottom: '1rem',
   },
   form: {
-    backgroundColor: "#bb872e",
-    padding: "10px",
-    borderRadius: "10px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    maxWidth: "1000px",
-    width: "400%",
-  },
-  foto: {
-    width: "80px",
-    height: "80px",
-    borderRadius: "50%",
-    objectFit: "cover",
-  },
-  botoes: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "10px",
-    position: "relative",
-    top: "-200px",
-    width: "118%",
-    borderRadius: "20px",
-  },
+    backgroundColor: '#bb872e',
+    padding: '1.5rem',
+    borderRadius: '8px',
+    border: '1px solid rgba(0, 0, 0, 0.2)'
 
+  },
+  label: {
+    color: '#0a0803',
+    fontWeight: 'bold',
+    marginBottom: '0.5rem',
+    display: 'block',
+  },
+  input: {
+    borderColor: '#ffffffff',
+    borderRadius: '5px',
+    padding: '0.7rem',
+    color: '#0a0803',
+    backgroundColor: '#fff',
+  },
+  textarea: {
+    borderColor: '#0a0803',
+    borderRadius: '5px',
+    padding: '0.7rem',
+    width: '70%',
+    minHeight: '30px',
+    color: '#0a0803',
+    backgroundColor: '#fff',
+  },
+  button: {
+    backgroundColor: '#0a0803',
+    color: '#bb872e',
+    fontWeight: 'bold',
+    marginTop: '1rem',
+  },
 };
