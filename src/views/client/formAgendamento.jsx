@@ -11,7 +11,6 @@ import {
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
 import "../home/styles/Home.module.css";
-import Footer from '../../components/Footer';
 
 
 export default function Agendamento() {
@@ -241,8 +240,6 @@ export default function Agendamento() {
             </Button>
           </Form>
         </Container>
-                        <Footer />
-
       </div>
     </>
   );

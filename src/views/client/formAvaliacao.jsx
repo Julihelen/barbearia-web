@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Form, Button, Grid, Icon, Dropdown, Image, Rating } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
-import Footer from '../../components/Footer';
 
 
 const servicosOptions = [
@@ -224,22 +223,7 @@ function Avaliacao() {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-
-      <br />
-    <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
     </div >
-    
-            <Footer />
-
     </>
   );
 }
