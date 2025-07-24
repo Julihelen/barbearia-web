@@ -13,39 +13,12 @@ const Home = () => {
       <MenuSistema tela="home" />
       <div className={styles.homeContainer}>
 
-        <Image  style={{    marginTop: "-40px",     marginLeft: "550px",}} src='/favicon.ico' size='medium'  />
-        
+        <Image style={{ marginTop: "-40px", marginLeft: "550px", }} src='/favicon.ico' size='medium' />
+
         <Container fluid className={styles.mainContent}>
           <HeroSection />
-
-          <br />
-<br />
-<br />
-<br />
-<br />
           <CarouselSection />
         </Container>
-
-              <br />
-    <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-              <br />
-    <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
         <Footer />
       </div></>
   );
