@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 export function HeroSection() {
   return <section className="mb-12">
       <h2 className="text-3xl font-light text-custom-gold mb-4">

@@ -46,22 +46,26 @@ function CadastroCliente() {
       senha
     };
 
-    axios.post("http://localhost:8080/api/cliente", clienteRequest)
-      .then((response) => {
-        console.log('Cliente cadastrado com sucesso.');
-          // Limpa o formulário:
-          setNome('');
-          setDataNascimento('');
-          setCpf('');
-          setEndereco('');
-          setFoneCelular('');
-          setEmail('');
-          setSenha('');
+      axios.post("http://localhost:8080/api/cliente", clienteRequest, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
-      .catch((error) => {
-        console.log('Erro ao incluir o cliente.');
-      });
-  }
+        .then((response) => {
+          console.log('Cliente cadastrado com sucesso.');
+            // Limpa o formulário:
+            setNome('');
+            setDataNascimento('');
+            setCpf('');
+            setEndereco('');
+            setFoneCelular('');
+            setEmail('');
+            setSenha('');
+        })
+        .catch((error) => {
+          console.log('Erro ao incluir o cliente.', error.response || error.message);
+        });
+    }
 
   return (
     <>
