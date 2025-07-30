@@ -84,13 +84,12 @@ function Avaliacao() {
           <Button onClick={logar} primary>Login</Button>
           <Button onClick={cadastrar} secondary>Cadastrar</Button>
         </div> */}
-                      <Image  style={{    marginTop: "-200px",     marginLeft: "450px",}} src='/favicon.ico' size='medium'  />
 
 
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
-
+              <Image style={{ marginTop: "12px", marginLeft: "14px", }} src='/favicon.ico' size='medium' />
               <h3 style={styles.title}> Deixe sua avaliação </h3>
               <Form style={styles.form}>
                 <Form.Field>
@@ -203,27 +202,27 @@ function Avaliacao() {
                   />
                 </Form.Field>
 
-              <Button
-                onClick={enviar}
-                icon
-                labelPosition="left"
-                style={{
-                  backgroundColor: "#bb872e",
-                  color: "white",
-                  fontWeight: "bold",
-                  marginTop: "1em"
-                }}
-                fluid
-                size="large"
-              >
-                <Icon name="save" />
-                Enviar
-              </Button>
-            </Form>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </div >
+                <Button
+                  onClick={enviar}
+                  icon
+                  labelPosition="left"
+                  style={{
+                    backgroundColor: "#bb872e",
+                    color: "white",
+                    fontWeight: "bold",
+                    marginTop: "1em"
+                  }}
+                  fluid
+                  size="large"
+                >
+                  <Icon name="save" />
+                  Enviar
+                </Button>
+              </Form>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div >
     </>
   );
 }
@@ -246,7 +245,7 @@ const styles = {
     textAlign: "right",
     color: "#d19f4a",
     fontFamily: "Arial, sans-serif",
-    
+
 
   },
   form: {
@@ -257,8 +256,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "10px",
-    maxWidth: "1000px",
-    width: "600%",
+    maxWidth: "900px",
+    width: "300%",
     color: "white",
     border: "1px solid #bb872e",
     marginTop: "-40px",
@@ -278,6 +277,6 @@ const styles = {
     position: "relative",
     top: "-200px",
     width: "118%",
-    
+
   },
 };
