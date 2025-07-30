@@ -13,6 +13,7 @@ import MenuSistema from "../../components/Menu";
 import axios from "axios";
 import Footer from "../../components/Footer";
 import "../home/styles/Home.module.css";
+import TopMenu from "../../components/TopMenu";
 
 
 export default function Agendamento() {
@@ -159,7 +160,7 @@ export default function Agendamento() {
     <>
       <MenuSistema tela="agendamento" />
       <div className="background-container"
-        style={{ marginTop: "0rem" }}
+        style={{ marginTop: "8rem" }}
       >
         <Header as="h2" style={{ color: "#bb872e", textAlign: "center" }}>
           <center><Image src='/logoprovisorio.png' size='medium' /></center>

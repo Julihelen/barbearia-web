@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Header, Icon, Modal, Table } from 'semantic-ui-react';
-import MenuSistema from "../../components/MenuAdmin";
+import MenuAdmin from "../../components/MenuAdmin";
+import TopMenu from '../../components/TopMenu';
 
-export default function ListBarbeiro () {
+export default function ListBarbeiro() {
     const [lista, setLista] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [idRemover, setIdRemover] = useState();
@@ -40,24 +41,23 @@ export default function ListBarbeiro () {
 
     return (
         <div>
-            <MenuSistema tela={'listarBarbeiros'} />
-            <div style={{marginTop: '3%'}}>
+            <TopMenu />
+            <MenuAdmin tela={'listarBarbeiros'} />
+            <div style={{ marginTop: '3%' }}>
                 <Container textAlign='justified' >
                     <h2> Barbeiros </h2>
                     <Divider />
-                    <div style={{marginTop: '4%'}}>
+                    <div style={{ marginTop: '4%' }}>
                         <Button
                             label='Novo'
                             circular
-                            color='orange'
+                            color='brown'
                             icon='clipboard outline'
                             floated='right'
                             as={Link}
                             to='/form-barbeiro'
                         />
 
-                        <br/><br/><br/>
-                      
                         <Table color='orange' sortable celled>
                             <Table.Header>
                                 <Table.Row>
@@ -67,7 +67,7 @@ export default function ListBarbeiro () {
                                     <Table.HeaderCell textAlign='center'>Ações</Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
-                          
+
                             <Table.Body>
                                 {lista.map(barbeiro => (
                                     <Table.Row key={barbeiro.id}>
@@ -81,9 +81,9 @@ export default function ListBarbeiro () {
                                                 color='green'
                                                 title='Editar barbeiro'
                                                 icon>
-                                                    <Link to="/form-barbeiro" state={{id: barbeiro.id}} style={{color: 'green'}}>
-                                                        <Icon name='edit' />
-                                                    </Link>
+                                                <Link to="/form-barbeiro" state={{ id: barbeiro.id }} style={{ color: 'green' }}>
+                                                    <Icon name='edit' />
+                                                </Link>
                                             </Button> &nbsp;
                                             <Button
                                                 inverted
@@ -92,7 +92,7 @@ export default function ListBarbeiro () {
                                                 title='Remover barbeiro'
                                                 icon
                                                 onClick={() => confirmaRemover(barbeiro.id)}>
-                                                    <Icon name='trash' />
+                                                <Icon name='trash' />
                                             </Button>
                                         </Table.Cell>
                                     </Table.Row>
@@ -111,7 +111,7 @@ export default function ListBarbeiro () {
             >
                 <Header icon>
                     <Icon name='trash' />
-                    <div style={{marginTop: '5%'}}> Tem certeza que deseja remover esse barbeiro? </div>
+                    <div style={{ marginTop: '5%' }}> Tem certeza que deseja remover esse barbeiro? </div>
                 </Header>
                 <Modal.Actions>
                     <Button basic color='red' inverted onClick={() => setOpenModal(false)}>

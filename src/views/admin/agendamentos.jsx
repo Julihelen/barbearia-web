@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Container, Divider, Header, Icon, Modal, Table } from 'semantic-ui-react';
-import MenuSistema from '../../components/Menu';
+import { Button, Container, Divider, Header, Icon, Modal, Table, Menu, Segment } from 'semantic-ui-react';
+import TopMenu from '../../components/TopMenu';
+import MenuAdmin from '../../components/MenuAdmin';
 
 export default function ListAgendamento() {
     const [lista, setLista] = useState([]);
@@ -51,7 +52,8 @@ export default function ListAgendamento() {
 
     return (
         <div>
-            <MenuSistema tela={'agendamento'} />
+            <TopMenu />
+            <MenuAdmin tela={'agendamento'} />
             <div style={{ marginTop: '3%' }}>
                 <Container textAlign='justified'>
                     <h2> Agendamentos </h2>
