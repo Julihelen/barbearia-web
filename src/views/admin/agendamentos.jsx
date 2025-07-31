@@ -54,7 +54,7 @@ export default function ListAgendamento() {
         <div>
             <TopMenu />
             <MenuAdmin tela={'agendamento'} />
-            <div style={{ marginTop: '3%' }}>
+            <div style={{ marginLeft: '180px', marginTop: '3em', padding: '20px' }}>
                 <Container textAlign='justified'>
                     <h2> Agendamentos </h2>
                     <Divider />

@@ -43,7 +43,7 @@ export default function ListBarbeiro() {
         <div>
             <TopMenu />
             <MenuAdmin tela={'listarBarbeiros'} />
-            <div style={{ marginTop: '3%' }}>
+            <div style={{ marginLeft: '180px', marginTop: '3em', padding: '20px' }}>
                 <Container textAlign='justified' >
                     <h2> Barbeiros </h2>
                     <Divider />
