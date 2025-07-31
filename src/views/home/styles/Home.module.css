@@ -203,3 +203,45 @@
   background: white; 
   border-radius: 8px;
 }
+.cadastro-title {
+  color: #ffffffff;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.cadastro-form-segment {
+  background-color: #bb872e;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.cadastro-label {
+  color: #0a0803;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.cadastro-input {
+  border: 1px solid #bb872e;
+  border-radius: 5px;
+  padding: 10px;
+  color: #0a0803;
+  background-color: #fff;
+  width: 100%;
+}
+
+.cadastro-dropdown {
+  border: 1px solid #bb872e !important;
+  border-radius: 5px !important;
+  color: #0a0803 !important;
+  background-color: #fff !important;
+}
+
+.cadastro-button {
+  background-color: #0a0803 !important;
+  color: #bb872e !important;
+  font-weight: bold !important;
+  margin-top: 1rem !important;
+}

@@ -6,6 +6,7 @@ import CadastroCliente from "../views/client/cadastroCliente";
 import CadastroBarbeiro from "../views/admin/cadastroBarbeiro";
 import ClienteLogin from "../views/client/clienteLogin";
 import ConsultaServicos from "../views/servicos/ConsultaServicos";
+import ListarCliente from "../views/admin/listarClientes";
 import Avaliacao from "../views/client/formAvaliacao"
 import Agendamentos from "../views/admin/agendamentos"
 import CadastroServicos from "../views/admin/cadastroServicos"
@@ -44,6 +45,7 @@ function Rotas() {
       <Route path="Sobre" element={<Sobre />} />
       <Route path="listarBarbeiros" element={<Barbeiros />} />
       <Route path="Panel" element={<Panel />} />
+      <Route path="listarClientes" element={<ListarCliente />} />
     </Routes>
   );
 }

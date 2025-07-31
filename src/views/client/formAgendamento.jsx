@@ -57,24 +57,20 @@ export default function Agendamento() {
     }
 
     axios
-      .get(`http://localhost:8080/api/barbeiros/por-servico/${servico}`)
-      .then((res) => {
-        const barbeiros = res.data.map((b) => ({
-          key: b.id,
-          text: b.nome,
-          value: b.id,
-          image: {
-            avatar: true,
-            src: b.foto || "https://via.placeholder.com/150",
-          },
-        }));
-        setBarbeirosOptions(barbeiros);
-      })
-      .catch((err) => {
-        console.error("Erro ao buscar barbeiros:", err);
-        setBarbeirosOptions([]);
-      });
-  }, [servico]);
+        .get(`http://localhost:8080/api/barbeiros/por-servico/${servico}`)
+        .then((res) => {
+          const barbeiros = res.data.map((b) => ({
+            key: b.id,
+            text: b.nome,
+            value: b.id,
+            image: {
+              avatar: true,
+              src: b.foto || "https://via.placeholder.com/150",
+            },
+          }));
+          setBarbeirosOptions(barbeiros);
+        })
+    }, [servico]);
 
   // Buscar horários disponíveis do barbeiro selecionado e data
   useEffect(() => {

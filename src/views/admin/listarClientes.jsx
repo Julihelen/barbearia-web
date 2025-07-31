@@ -5,38 +5,28 @@ import { Button, Container, Divider, Header, Icon, Modal, Table, Form } from 'se
 import TopMenu from '../../components/TopMenu';
 import MenuAdmin from '../../components/MenuAdmin';
 
-export default function ListAgendamento() {
+export default function ListarCliente() {
     const [lista, setLista] = useState([]);
     const [openModal, setOpenModal] = useState(false); // Modal de exclusão
     const [idRemover, setIdRemover] = useState();
 
     const [openEditModal, setOpenEditModal] = useState(false); // Modal de edição
-    const [agendamentoEditando, setAgendamentoEditando] = useState(null);
+    const [clienteEditando, setClienteEditando] = useState(null);
 
     // Campos do formulário de edição
-    const [dataEdit, setDataEdit] = useState("");
-    const [horaEdit, setHoraEdit] = useState("");
-    const [observacoesEdit, setObservacoesEdit] = useState("");
+    const [nomeEdit, setNomeEdit] = useState("");
+    const [emailEdit, setEmailEdit] = useState("");
+    const [foneEdit, setFoneEdit] = useState("");
+    const [cpfEdit, setCpfEdit] = useState("");
 
     useEffect(() => {
         carregarLista();
     }, []);
 
     function carregarLista() {
-        axios.get("http://localhost:8080/api/agendamento")
+        axios.get("http://localhost:8080/api/cliente")
             .then((response) => setLista(response.data))
-            .catch((error) => console.error("Erro ao buscar agendamentos:", error));
-    }
-
-    function formatarData(dataParam) {
-        if (!dataParam) return '';
-        const [ano, mes, dia] = dataParam.split('-');
-        return `${dia}/${mes}/${ano}`;
-    }
-
-    function formatarHorario(horario) {
-        if (!horario) return '';
-        return horario.substring(0, 5);
+            .catch((error) => console.error("Erro ao buscar clientes:", error));
     }
 
     // Modal de exclusão
@@ -47,50 +37,49 @@ export default function ListAgendamento() {
 
     async function remover() {
         try {
-            await axios.delete(`http://localhost:8080/api/agendamento/${idRemover}`);
+            await axios.delete(`http://localhost:8080/api/cliente/${idRemover}`);
             carregarLista();
         } catch (error) {
-            console.error('Erro ao remover o agendamento:', error);
+            console.error('Erro ao remover cliente:', error);
         }
         setOpenModal(false);
     }
 
     // Modal de edição
-    const abrirEditar = (agendamento) => {
-        console.log("Agendamento selecionado para editar:", agendamento);
-        setAgendamentoEditando(agendamento);
-        setDataEdit(agendamento.dataAtendimento);
-        setHoraEdit(agendamento.horario);
-        setObservacoesEdit(agendamento.observacoes || "");
-        setOpenEditModal(true); // Abre o modal correto
+    const abrirEditar = (cliente) => {
+        setClienteEditando(cliente);
+        setNomeEdit(cliente.nome || "");
+        setEmailEdit(cliente.email || "");
+        setFoneEdit(cliente.foneCelular || "");
+        setCpfEdit(cliente.cpf || "");
+        setOpenEditModal(true);
     };
 
     const salvarEdicao = async () => {
         const payload = {
-            id: agendamentoEditando.id, // 🔑 Adiciona o ID no corpo
-            servicoId: agendamentoEditando.servico?.id,
-            barbeiroId: agendamentoEditando.barbeiro?.id,
-            dataAtendimento: dataEdit,
-            horario: horaEdit,
-            observacoes: observacoesEdit
+            ...clienteEditando,
+            nome: nomeEdit,
+            email: emailEdit,
+            foneCelular: foneEdit,
+            cpf: cpfEdit
         };
 
         try {
-            console.log("Payload enviado:", payload);
-            await axios.put(`http://localhost:8080/api/agendamento/${agendamentoEditando.id}`, payload);
+            await axios.put(`http://localhost:8080/api/cliente/${clienteEditando.id}`, payload);
             carregarLista();
             setOpenEditModal(false);
         } catch (error) {
             console.error("Erro ao salvar edição:", error.response || error);
         }
     };
+
     return (
         <div>
             <TopMenu />
-            <MenuAdmin tela={'agendamento'} />
+            <MenuAdmin tela={'clientes'} />
             <div style={{ marginLeft: '180px', marginTop: '3em', padding: '20px' }}>
                 <Container textAlign='justified'>
-                    <h2> Agendamentos </h2>
+                    <h2> Clientes </h2>
                     <Divider />
 
                     <div style={{ marginTop: '4%' }}>
@@ -98,10 +87,10 @@ export default function ListAgendamento() {
                             label='Novo'
                             circular
                             color='orange'
-                            icon='calendar plus'
+                            icon='user plus'
                             floated='right'
                             as={Link}
-                            to='/formAgendamento'
+                            to='/cadastroCliente'
                         />
 
                         <br /><br /><br />
@@ -109,25 +98,21 @@ export default function ListAgendamento() {
                         <Table color='orange' sortable celled>
                             <Table.Header>
                                 <Table.Row>
-                                    <Table.HeaderCell>Cliente</Table.HeaderCell>
-                                    <Table.HeaderCell>Serviço</Table.HeaderCell>
-                                    <Table.HeaderCell>Data</Table.HeaderCell>
-                                    <Table.HeaderCell>Horário</Table.HeaderCell>
-                                    <Table.HeaderCell>Barbeiro</Table.HeaderCell>
-                                    <Table.HeaderCell>Observações</Table.HeaderCell>
+                                    <Table.HeaderCell>Nome</Table.HeaderCell>
+                                    <Table.HeaderCell>Email</Table.HeaderCell>
+                                    <Table.HeaderCell>Telefone</Table.HeaderCell>
+                                    <Table.HeaderCell>CPF</Table.HeaderCell>
                                     <Table.HeaderCell textAlign='center'>Ações</Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
 
                             <Table.Body>
-                                {lista.map((agendamento) => (
-                                    <Table.Row key={agendamento.id}>
-                                        <Table.Cell>{agendamento.nome}</Table.Cell>
-                                        <Table.Cell>{agendamento.servico?.titulo || '—'}</Table.Cell>
-                                        <Table.Cell>{formatarData(agendamento.dataAtendimento)}</Table.Cell>
-                                        <Table.Cell>{formatarHorario(agendamento.horario)}</Table.Cell>
-                                        <Table.Cell>{agendamento.barbeiro?.nome || '—'}</Table.Cell>
-                                        <Table.Cell>{agendamento.observacoes || '—'}</Table.Cell>
+                                {lista.map((cliente) => (
+                                    <Table.Row key={cliente.id}>
+                                        <Table.Cell>{cliente.nome}</Table.Cell>
+                                        <Table.Cell>{cliente.email}</Table.Cell>
+                                        <Table.Cell>{cliente.foneCelular}</Table.Cell>
+                                        <Table.Cell>{cliente.cpf}</Table.Cell>
                                         <Table.Cell textAlign='center'>
                                             <Button
                                                 inverted
@@ -135,7 +120,7 @@ export default function ListAgendamento() {
                                                 color='green'
                                                 title='Editar'
                                                 icon
-                                                onClick={() => abrirEditar(agendamento)}
+                                                onClick={() => abrirEditar(cliente)}
                                             >
                                                 <Icon name='edit' />
                                             </Button> &nbsp;
@@ -145,7 +130,7 @@ export default function ListAgendamento() {
                                                 color='red'
                                                 title='Remover'
                                                 icon
-                                                onClick={() => confirmaRemover(agendamento.id)}
+                                                onClick={() => confirmaRemover(cliente.id)}
                                             >
                                                 <Icon name='trash' />
                                             </Button>
@@ -163,7 +148,7 @@ export default function ListAgendamento() {
                 <Header icon>
                     <Icon name='trash' />
                     <div style={{ marginTop: '5%' }}>
-                        Tem certeza que deseja remover esse agendamento?
+                        Tem certeza que deseja remover esse cliente?
                     </div>
                 </Header>
                 <Modal.Actions>
@@ -176,33 +161,42 @@ export default function ListAgendamento() {
                 </Modal.Actions>
             </Modal>
 
-            {/* Modal para editar agendamento */}
+            {/* Modal para editar cliente */}
             <Modal open={openEditModal} onClose={() => setOpenEditModal(false)} size="small">
-                <Header icon="edit" content="Editar Agendamento" />
+                <Header icon="edit" content="Editar Cliente" />
                 <Modal.Content>
                     <Form>
                         <Form.Field>
-                            <label>Data</label>
+                            <label>Nome</label>
                             <input
-                                type="date"
-                                value={dataEdit}
-                                onChange={(e) => setDataEdit(e.target.value)}
+                                value={nomeEdit}
+                                onChange={(e) => setNomeEdit(e.target.value)}
+                                placeholder="Nome do cliente"
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label>Hora</label>
+                            <label>Email</label>
                             <input
-                                type="time"
-                                value={horaEdit}
-                                onChange={(e) => setHoraEdit(e.target.value)}
+                                type="email"
+                                value={emailEdit}
+                                onChange={(e) => setEmailEdit(e.target.value)}
+                                placeholder="Email"
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label>Observações</label>
-                            <Form.TextArea
-                                value={observacoesEdit}
-                                onChange={(e) => setObservacoesEdit(e.target.value)}
-                                placeholder="Observações do agendamento"
+                            <label>Telefone</label>
+                            <input
+                                value={foneEdit}
+                                onChange={(e) => setFoneEdit(e.target.value)}
+                                placeholder="Telefone"
+                            />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>CPF</label>
+                            <input
+                                value={cpfEdit}
+                                onChange={(e) => setCpfEdit(e.target.value)}
+                                placeholder="CPF"
                             />
                         </Form.Field>
                     </Form>

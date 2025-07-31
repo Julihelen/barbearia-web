@@ -20,6 +20,16 @@ const MenuAdmin = ({ activeItem = '', onMenuClick = () => {} }) => {
         <Icon name='dashboard' />
         Dashboard
       </Menu.Item>
+      <Menu.Item
+        name='clientes'
+        active={activeItem === 'clientes'}
+        onClick={() => onMenuClick('clientes')}
+        as='a'
+        href="/listarClientes"
+      >
+        <Icon name='users' />
+        Clientes
+      </Menu.Item>
 
       <Menu.Item
         name='servicos'
