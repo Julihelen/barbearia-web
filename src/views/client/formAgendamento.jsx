@@ -119,11 +119,11 @@ export default function Agendamento() {
     }
 
     const AgendamentoRequest = {
-      nome,
-      servico,
+      clienteId: 1,         // envia id fixo do cliente
+      servicoId: servico,   // id do serviço selecionado no dropdown
       dataAtendimento,
       horario,
-      barbeiro,
+      barbeiroId: barbeiro, // id do barbeiro selecionado
       observacoes,
     };
 

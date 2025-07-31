@@ -1,10 +1,26 @@
 import { Menu, Container, Dropdown, Button, Icon } from 'semantic-ui-react';
 import styles from '../views/home/styles/Home.module.css';
 import { Link } from "react-router-dom";
+import { logout } from '../views/util/AuthenticationService';
+
 
 const MenuSistema = ({ tela }) => {
   return (
     <Menu inverted borderless className={styles.headerMenu}>
+
+
+       <Menu.Item
+                    className='navbar__item--mobile'
+                    onClick={logout}
+                    content='Sair'
+                    as={Link}
+                    to='/'
+                />
+
+
+
+
+
       <Container>
         <Menu.Item
           header

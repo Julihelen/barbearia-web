@@ -13,14 +13,28 @@ import Dashboard from "../views/admin/dashboard";
 import Sobre from "./Sobre";
 import Barbeiros from '../views/admin/listarBarbeiros';
 import { Panel } from '../components/teste/Panel';
+import FormLogin from '../views/login/FormLogin';
+import { ProtectedRoute } from '../views/util/ProtectedRoute';
+
 
 function Rotas() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+
+      {/* <Route path="/" element={ <FormLogin/> } /> */}
+
+      {/* <Route path="/" element={
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
+
+      } /> */}
+      <Route path="/" element={ <Home/> } /> 
+
+
       <Route path="cadastroCliente" element={<CadastroCliente />} />
       <Route path="formAgendamento" element={<Agendamento />} />
-      <Route path="formBarbeiro" element={<CadastroBarbeiro />} />
+      <Route path="cadastroBarbeiro" element={<CadastroBarbeiro />} />
       <Route path="ClienteLogin" element={<ClienteLogin />} />
       <Route path="consultarServicos" element={<ConsultaServicos />} />
       <Route path="formAvaliacao" element={<Avaliacao />} />
