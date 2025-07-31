@@ -108,15 +108,13 @@ export default function ListBarbeiro() {
                         <Button
                             label='Novo'
                             circular
-                            color='orange'
+                            color='brown'
                             icon='clipboard outline'
                             floated='right'
                             as={Link}
                             to='/cadastroBarbeiro'
                         />
-
-                        <br /><br /><br />
-
+                        <br></br><br></br><br></br>
                         <Table color='orange' sortable celled>
                             <Table.Header>
                                 <Table.Row>
@@ -145,10 +143,10 @@ export default function ListBarbeiro() {
                                                 circular
                                                 color='green'
                                                 title='Editar barbeiro'
-                                                icon
-                                                onClick={() => abrirEditar(barbeiro)}
-                                            >
-                                                <Icon name='edit' />
+                                                icon>
+                                                <Link to="/form-barbeiro" state={{ id: barbeiro.id }} style={{ color: 'green' }}>
+                                                    <Icon name='edit' />
+                                                </Link>
                                             </Button> &nbsp;
                                             <Button
                                                 inverted
@@ -156,8 +154,7 @@ export default function ListBarbeiro() {
                                                 color='red'
                                                 title='Remover barbeiro'
                                                 icon
-                                                onClick={() => confirmaRemover(barbeiro.id)}
-                                            >
+                                                onClick={() => confirmaRemover(barbeiro.id)}>
                                                 <Icon name='trash' />
                                             </Button>
                                         </Table.Cell>
@@ -177,7 +174,7 @@ export default function ListBarbeiro() {
             >
                 <Header icon>
                     <Icon name='trash' />
-                    <div style={{ marginTop: '5%' }}>Tem certeza que deseja remover esse barbeiro?</div>
+                    <div style={{ marginTop: '5%' }}> Tem certeza que deseja remover esse barbeiro? </div>
                 </Header>
                 <Modal.Actions>
                     <Button basic color='red' inverted onClick={() => setOpenModal(false)}>

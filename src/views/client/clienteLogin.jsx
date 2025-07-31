@@ -45,7 +45,7 @@ function LoginForm() {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <center>
-            <Image src="/logoprovisorio.png" size="medium" />
+          <Image src="/logoprovisorio.png" size="medium" />
           </center>
           <Header
             as="h2"

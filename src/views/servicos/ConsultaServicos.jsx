@@ -4,25 +4,29 @@ import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 import axios from "axios";
 
-export default function ListServicos () {
+export default function ListServicos() {
     const [servicos, setServicos] = useState([]);
     useEffect(() => {
         carregarServicos();
-   }, [])
+    }, [])
 
-   function carregarServicos() {
-    axios.get("http://localhost:8080/api/servicos")
-        .then((response) => {
-            console.log(response.data); // veja o que aparece aqui
-            setServicos(response.data); // ou response.data.content
-        })
-}
+    function carregarServicos() {
+        axios.get("http://localhost:8080/api/servicos")
+            .then((response) => {
+                console.log(response.data); // veja o que aparece aqui
+                setServicos(response.data); // ou response.data.content
+            })
+    }
 
     return (
         <>
             <Menu tela="Consultar serviços" />
             <div className="container-servicos">
-                <Header as="h2" dividing style={{ color: '#bb872e', fontFamily: 'Palatino, Palatino Linotype, Book Antiqua, serif' }}>
+                <Header as="h2" dividing style={{
+                    color: '#bb872e', fontFamily: 'Palatino, Palatino Linotype, Book Antiqua, serif',
+                    marginTop: '20px', marginBottom: '20px'
+
+                }}>
                     Nossos serviços
                 </Header>
                 <Card.Group centered>

@@ -7,10 +7,13 @@ import {
   Header,
   Input,
   TextArea,
+  Image,
 } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
+import Footer from "../../components/Footer";
 import "../home/styles/Home.module.css";
+import TopMenu from "../../components/TopMenu";
 
 
 export default function Agendamento() {
@@ -45,33 +48,33 @@ export default function Agendamento() {
   }, []);
 
   // Buscar barbeiros disponíveis pelo serviço
-    useEffect(() => {
-      if (!servico) {
-        setBarbeirosOptions([]);
-        setBarbeiro(null);
-        setFotoBarbeiro(null);
-        return;
-      }
+  useEffect(() => {
+    if (!servico) {
+      setBarbeirosOptions([]);
+      setBarbeiro(null);
+      setFotoBarbeiro(null);
+      return;
+    }
 
-      axios
-        .get(`http://localhost:8080/api/barbeiros/por-servico/${servico}`)
-        .then((res) => {
-          const barbeiros = res.data.map((b) => ({
-            key: b.id,
-            text: b.nome,
-            value: b.id,
-            image: {
-              avatar: true,
-              src: b.foto || "https://via.placeholder.com/150",
-            },
-          }));
-          setBarbeirosOptions(barbeiros);
-        })
-        .catch((err) => {
-          console.error("Erro ao buscar barbeiros:", err);
-          setBarbeirosOptions([]);
-        });
-    }, [servico]);
+    axios
+      .get(`http://localhost:8080/api/barbeiros/por-servico/${servico}`)
+      .then((res) => {
+        const barbeiros = res.data.map((b) => ({
+          key: b.id,
+          text: b.nome,
+          value: b.id,
+          image: {
+            avatar: true,
+            src: b.foto || "https://via.placeholder.com/150",
+          },
+        }));
+        setBarbeirosOptions(barbeiros);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar barbeiros:", err);
+        setBarbeirosOptions([]);
+      });
+  }, [servico]);
 
   // Buscar horários disponíveis do barbeiro selecionado e data
   useEffect(() => {
@@ -128,11 +131,11 @@ export default function Agendamento() {
     };
 
     axios
-        .post("http://localhost:8080/api/agendamento", AgendamentoRequest, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+      .post("http://localhost:8080/api/agendamento", AgendamentoRequest, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
 
       .then(() => {
         alert("Agendamento realizado com sucesso!");
@@ -156,24 +159,52 @@ export default function Agendamento() {
   return (
     <>
       <MenuSistema tela="agendamento" />
-      <div className="background-container">
-        <Container className="form-agendamento">
-          <Header as="h2" className="form-header" style={{ color: "#bb872e" }}>
-            Agendamento de serviço 
-          </Header>
-          <Form>
-            <Form.Field>
-              <label>Nome:</label>
+      <div className="background-container"
+        style={{ marginTop: "8rem" }}
+      >
+        <Header as="h2" style={{ color: "#bb872e", textAlign: "center" }}>
+          <center><Image src='/logoprovisorio.png' size='medium' /></center>
+          Agendamento de serviço
+        </Header>
+        <Container
+          className="form-agendamento"
+          style={{
+            backgroundColor: "#0a0803",
+            border: "2px solid #bb872e",
+            padding: "2rem",
+            borderRadius: "8px",
+            width: "500px",
+            maxWidth: "90%",
+            margin: "0 auto",
+          }}
+        >
+
+
+          <Form onSubmit={agendar}>
+            <Form.Field required>
+              <label style={{ color: "#bb872e" }}> Nome:</label>
               <Input
                 placeholder="Digite seu nome"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
+                input={{
+                  style: {
+                    backgroundColor: "#0a0803",
+                    color: "white",
+                    border: "1px solid #bb872e",
+                  },
+                }}
               />
             </Form.Field>
 
-            <Form.Field>
-              <label>Serviço:</label>
+            <Form.Field required>
+              <label style={{ color: "#bb872e" }}>Serviço:</label>
               <Dropdown
+                style={{
+                  backgroundColor: "#0a0803",
+                  color: "white",
+                  border: "1px solid #bb872e",
+                }}
                 placeholder="Selecione um serviço"
                 fluid
                 selection
@@ -183,9 +214,14 @@ export default function Agendamento() {
               />
             </Form.Field>
 
-            <Form.Field>
-              <label>Barbeiro:</label>
+            <Form.Field required>
+              <label style={{ color: "#bb872e" }}> Barbeiro </label>
               <Dropdown
+                style={{
+                  backgroundColor: "#0a0803",
+                  color: "white",
+                  border: "1px solid #bb872e",
+                }}
                 placeholder="Selecione um barbeiro"
                 fluid
                 selection
@@ -205,23 +241,34 @@ export default function Agendamento() {
                   src={fotoBarbeiro}
                   alt="Foto do barbeiro"
                   className="foto-barbeiro"
+                  style={{ marginTop: "10px", maxWidth: "150px" }}
                 />
               )}
             </Form.Field>
 
-            <Form.Field>
-              <label>Data:</label>
+            <Form.Field required>
+              <label style={{ color: "#bb872e" }}> Data:</label>
               <Input
                 type="date"
+                style={{
+                  backgroundColor: "#0a0803",
+                  color: "white",
+                  border: "1px solid #bb872e",
+                }}
                 value={dataAtendimento}
                 onChange={(e) => setDataAtendimento(e.target.value)}
                 disabled={!barbeiro}
               />
             </Form.Field>
 
-            <Form.Field>
-              <label>Horário:</label>
+            <Form.Field required>
+              <label style={{ color: "#bb872e" }}> Horário: </label>
               <Dropdown
+                style={{
+                  backgroundColor: "#0a0803",
+                  color: "white",
+                  border: "1px solid #bb872e",
+                }}
                 placeholder="Selecione um horário"
                 fluid
                 selection
@@ -233,20 +280,26 @@ export default function Agendamento() {
             </Form.Field>
 
             <Form.Field>
-              <label>Observações:</label>
+              <label style={{ color: "#bb872e" }}>Observações:</label>
               <TextArea
+                style={{
+                  backgroundColor: "#0a0803",
+                  color: "white",
+                  border: "1px solid #bb872e",
+                }}
                 placeholder="Alguma preferência ou observação?"
                 value={observacoes}
                 onChange={(e) => setObservacoes(e.target.value)}
               />
             </Form.Field>
 
-            <Button onClick={agendar} color="green">
+            <Button type="submit" style={{ backgroundColor: "#bb872e", color: "white" }}>
               Agendar
             </Button>
           </Form>
         </Container>
       </div>
+      <Footer />
     </>
   );
 }
