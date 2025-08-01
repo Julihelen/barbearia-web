@@ -10,16 +10,6 @@ const MenuSistema = ({ tela }) => {
     <Menu inverted borderless className={styles.headerMenu}>
 
 
-       <Menu.Item
-                    className='navbar__item--mobile'
-                    onClick={logout}
-                    content='Sair'
-                    as={Link}
-                    to='/'
-                />
-
-
-
 
 
       <Container>
@@ -65,12 +55,6 @@ const MenuSistema = ({ tela }) => {
           <Dropdown item text="Cliente">
             <Dropdown.Menu>
               <Dropdown.Item
-                text="Login"
-                active={tela === "Login"}
-                as={Link}
-                to="/clienteLogin"
-              />
-              <Dropdown.Item
                 text="Cadastro"
                 active={tela === "Cadastro"}
                 as={Link}
@@ -101,6 +85,34 @@ const MenuSistema = ({ tela }) => {
           >
             Agendar Agora
           </Menu.Item>
+
+
+          <Dropdown.Item
+             text="Login"
+             active={tela === "Login"}
+             as={Link}
+             to="/clienteLogin"
+            className={styles.bookNowButton}
+
+            />
+
+
+
+
+
+            
+
+             <Menu.Item
+              className='navbar__item--mobile'
+              onClick={logout}
+              content='Sair'
+              as={Link}
+              to='/'
+          />
+
+
+
+
           
           {/* Aqui começa o menu do administrador */}
           {

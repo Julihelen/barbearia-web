@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Button, Grid, Icon, Dropdown, Image, Rating } from "semantic-ui-react";
 import MenuSistema from "../../components/Menu";
 import axios from "axios";
+import Footer from "../../components/Footer";
+
 
 
 const servicosOptions = [
@@ -89,8 +91,6 @@ function Avaliacao() {
         <Grid stackable centered>
           <Grid.Row>
             <Grid.Column mobile={16} tablet={8} computer={8}>
-              <Image style={{ marginTop: "12px", marginLeft: "14px", }} src='/favicon.ico' size='medium' />
-              <h3 style={styles.title}> Deixe sua avaliação </h3>
               <Form style={styles.form}>
                 <Form.Field>
                   <label style={{ color: "#bb872e" }}> Nome Completo </label>
@@ -223,6 +223,8 @@ function Avaliacao() {
           </Grid.Row>
         </Grid>
       </div >
+       <Footer />
+      
     </>
   );
 }
@@ -241,7 +243,7 @@ const styles = {
   },
   title: {
     fontSize: "20px",
-    marginBottom: "60px",
+    marginBottom: "10px",
     textAlign: "right",
     color: "#d19f4a",
     fontFamily: "Arial, sans-serif",
@@ -257,11 +259,11 @@ const styles = {
     flexDirection: "column",
     gap: "10px",
     maxWidth: "900px",
-    width: "300%",
+    width: "170%",
     color: "white",
     border: "1px solid #bb872e",
-    marginTop: "-40px",
-    marginLeft: "-5px",
+    marginTop: "150px",
+    marginLeft: "150px",
 
   },
   foto: {
