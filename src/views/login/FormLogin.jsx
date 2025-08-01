@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message, Segment, Image } from 'semantic-ui-react';
 import { registerSuccessfulLoginForJwt } from '../util/AuthenticationService';
 import { notifySuccess } from '../util/Util';
 
@@ -45,59 +45,99 @@ export default function FormLogin() {
 
         <div>
 
-            <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
+            <Grid textAlign='center' style={{ height: '0vh' }} verticalAlign='middle'>
 
                 <Grid.Column style={{ maxWidth: 500 }}>
-
-
                     <div style={{ marginTop: '15%' }}>
-                        <Header as='h2' color='grey' textAlign='center'>
+                        <Image src="/logoprovisorio.png" size="medium" centered />
+                        <Header
+                            as='h2'
+                            textAlign='center'
+                            style={{ color: '#bb872e' }}>
                             Informe suas credenciais de acesso
                         </Header>
+
                     </div> <br /> <br />
 
-                    <Form>
-                        <Segment stacked>
+                    <Form
+                        style={{
+                            backgroundColor: '#0a0803',
+                            padding: '2em',
+                            borderRadius: '10px',
+                        }}
+                    >
+                        <Segment
+                            stacked
+                            style={{
+                                backgroundColor: '#0a0803',
+                                border: '1px solid #bb872e',
+                            }}
+                        >
+                            <Form.Field>
+                            <label style={{ color: '#bb872e', display: 'block', textAlign: 'left' }}>
+                                    E-mail
+                                </label>
+                                <Form.Input
+                                    fluid
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    icon="user"
+                                    iconPosition="left"
+                                    placeholder="Informe seu e-mail"
+                                    required
+                                    maxLength="100"
+                                    input={{
+                                        style: {
+                                            backgroundColor: '#0a0803',
+                                            color: 'white',
+                                            border: '1px solid #bb872e',
+                                        },
+                                    }}
+                                />
+                            </Form.Field>
 
-                            <Form.Input
-                                fluid
-                                value={username}
-                                onChange={e => setUsername(e.target.value)}
-                                icon='user'
-                                iconPosition='left'
-                                placeholder='Informe seu e-mail'
-                                required
-                                maxLength="100"
-                            />
-
-                            <Form.Input
-                                fluid
-                                value={senha}
-                                onChange={e => setSenha(e.target.value)}
-                                icon='lock'
-                                iconPosition='left'
-                                type='password'
-                                placeholder='Senha'
-                                required
-                                maxLength="100"
-                            />
+                            <Form.Field>
+                                <label style={{ color: '#bb872e', display: 'block', textAlign: 'left' }}>
+                                    Senha
+                                </label>
+                                <Form.Input
+                                    fluid
+                                    value={senha}
+                                    onChange={(e) => setSenha(e.target.value)}
+                                    icon="lock"
+                                    iconPosition="left"
+                                    type="password"
+                                    placeholder="Senha"
+                                    required
+                                    maxLength="100"
+                                    input={{
+                                        style: {
+                                            backgroundColor: '#0a0803',
+                                            color: 'white',
+                                            border: '1px solid #bb872e',
+                                        },
+                                    }}
+                                />
+                            </Form.Field>
 
                             <Button
                                 fluid
-                                size='large'
-                                color='orange'
-                                icon='sign in alternate'
-                                content='Entrar'
+                                size="large"
+                                icon="sign in alternate"
+                                content="Entrar"
+                                style={{
+                                    backgroundColor: '#bb872e',
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    marginTop: '1em',
+                                }}
                                 onClick={(e) => {
-                                    e.preventDefault()
-                                    entrar()
-                                }} />
-
+                                    e.preventDefault();
+                                    entrar();
+                                }}
+                            />
                         </Segment>
                     </Form>
-                    <Message>
-                        Cadastre-se: <Link to="/cadastroCliente">clique aqui</Link>
-                    </Message>
 
                 </Grid.Column>
             </Grid>
