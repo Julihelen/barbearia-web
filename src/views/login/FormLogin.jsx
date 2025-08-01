@@ -95,11 +95,6 @@ export default function FormLogin() {
 
                         </Segment>
                     </Form>
-
-                    <Message>
-                        Esqueceu a sua senha: <Link>clique aqui</Link>
-                    </Message>
-
                     <Message>
                         Cadastre-se: <Link to="/cadastroCliente">clique aqui</Link>
                     </Message>
