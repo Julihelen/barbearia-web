@@ -1,12 +1,13 @@
 import React from 'react';
 import { Menu, Container, Icon } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../views/util/AuthenticationService';
 
 const TopMenu = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    logout()
     navigate('/'); 
   };
 

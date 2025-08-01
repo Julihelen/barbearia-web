@@ -16,6 +16,7 @@ function CadastroServico() {
   }
 
   function salvar() {
+    const token = localStorage.getItem("token")
     const ServicosRequest = {
       titulo,
       descricao,
@@ -29,7 +30,12 @@ function CadastroServico() {
     }
 
     axios
-      .post("http://localhost:8080/api/servicos", ServicosRequest)
+      .post("http://localhost:8080/api/servicos", ServicosRequest, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then(() => {
         alert("Serviço cadastrado com sucesso!");
         setTitulo("");

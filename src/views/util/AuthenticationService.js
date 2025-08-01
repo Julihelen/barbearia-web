@@ -1,58 +1,53 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// export const TOKEN_SESSION_ATTRIBUTE_NAME = 'token'
-// export const EXPIRATION_SESSION_ATTRIBUTE_NAME = 'expiration'
+export const TOKEN_SESSION_ATTRIBUTE_NAME = 'token';
+export const EXPIRATION_SESSION_ATTRIBUTE_NAME = 'expiration';
+export const ROLE_TYPE = 'role'
 
-// export const registerSuccessfulLoginForJwt = (token, expiration) => {
+export const registerSuccessfulLoginForJwt = (token, expiration, role) => {
+   localStorage.setItem(TOKEN_SESSION_ATTRIBUTE_NAME, token);
+   localStorage.setItem(EXPIRATION_SESSION_ATTRIBUTE_NAME, expiration);
+   localStorage.setItem(ROLE_TYPE, role)
+   setupAxiosInterceptors();
+};
 
-//    localStorage.setItem(TOKEN_SESSION_ATTRIBUTE_NAME, token)
-//    localStorage.setItem(EXPIRATION_SESSION_ATTRIBUTE_NAME, expiration)
+export const setupAxiosInterceptors = () => {
+   const rawToken = localStorage.getItem(TOKEN_SESSION_ATTRIBUTE_NAME);
 
-//    setupAxiosInterceptors()
-// }
+   if (isUserLoggedIn()) {
+       axios.defaults.headers.common['Authorization'] = createJWTToken(rawToken);
+       axios.defaults.headers.common['Content-Type'] = 'application/json';
 
-// export const setupAxiosInterceptors = () => {
+   } else {
+       delete axios.defaults.headers.common['Authorization'];
+   }
+};
 
-//    let token = createJWTToken(localStorage.getItem(TOKEN_SESSION_ATTRIBUTE_NAME))
+export const createJWTToken = (token) => {
+   return 'Bearer ' + token;
+};
 
-//    if (isUserLoggedIn()) {
-//        axios.defaults.headers.common['Authorization'] = token;
-//    } else {
-//        delete axios.defaults.headers.common['Authorization'];
-//    }
-// }
+export const logout = () => {
+   localStorage.clear();
+   delete axios.defaults.headers.common['Authorization'];
+};
 
-// export const createJWTToken = (token) => {
-//    return 'Bearer ' + token
-// }
+export const isTokenExpired = () => {
+   let expiration = localStorage.getItem(EXPIRATION_SESSION_ATTRIBUTE_NAME);
+   return expiration === null || expiration < new Date().getTime();
+};
 
+export const isUserLoggedIn = () => {
+   let user = localStorage.getItem(TOKEN_SESSION_ATTRIBUTE_NAME);
+   if (user === null) {
+       return false;
+   } else {
+       return true;
+   }
+};
 
-// export const logout = () => {
-
-//    localStorage.clear()
-//    delete axios.defaults.headers.common['Authorization'];
-// }
-
-// export const isTokenExpired = () => {
-
-//    let expiration = localStorage.getItem(EXPIRATION_SESSION_ATTRIBUTE_NAME)
-//    return expiration === null || expiration < new Date().getTime()
-// }
-
-// export const isUserLoggedIn = () => {
-
-//    let user = localStorage.getItem(TOKEN_SESSION_ATTRIBUTE_NAME)
-
-//    if (user === null) {
-//        return false
-//    }  else {
-//        return true
-//    }
-// }
-
-// export const getToken = () => {
-
-//    let token = localStorage.getItem(TOKEN_SESSION_ATTRIBUTE_NAME)
-//    if (token === null) return ''
-//    return token
-// }
+export const getToken = () => {
+   let token = localStorage.getItem(TOKEN_SESSION_ATTRIBUTE_NAME);
+   if (token === null) return '';
+   return token;
+};

@@ -1,10 +1,11 @@
 import { Menu, Container, Dropdown, Button, Icon } from 'semantic-ui-react';
 import styles from '../views/home/styles/Home.module.css';
 import { Link } from "react-router-dom";
-import { logout } from '../views/util/AuthenticationService';
+import { logout, ROLE_TYPE } from '../views/util/AuthenticationService';
 
 
 const MenuSistema = ({ tela }) => {
+  const role = localStorage.getItem(ROLE_TYPE)
   return (
     <Menu inverted borderless className={styles.headerMenu}>
 
@@ -102,12 +103,15 @@ const MenuSistema = ({ tela }) => {
           </Menu.Item>
           
           {/* Aqui começa o menu do administrador */}
+          {
+            role === "ROLE_FUNCIONARIO_ADMIN" &&
           <Menu.Item
             name='Administrador'
             as={Link}
             to="/dashboard"
             className={styles.menuItem}
           />
+          }
 
         </Menu.Menu>
       </Container>

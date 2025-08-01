@@ -43,7 +43,7 @@ function CadastroCliente() {
       endereco,
       foneCelular,
       email,
-      senha
+      password: senha
     };
 
       axios.post("http://localhost:8080/api/cliente", clienteRequest, {
