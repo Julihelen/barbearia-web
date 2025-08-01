@@ -44,13 +44,13 @@ const MenuSistema = ({ tela }) => {
                 as={Link}
                 to="/consultarServicos"
                 className={styles.dropdown}
-              />
-              <Dropdown.Item
-                text="Agendar serviço"
-                active={tela === "agendamento"}
-                as={Link}
-                to="/formAgendamento"
-              />
+              // />
+              // <Dropdown.Item
+              //   text="Agendar serviço"
+              //   active={tela === "agendamento"}
+              //   as={Link}
+              //   to="/formAgendamento"
+               />
             </Dropdown.Menu>
           </Dropdown>
 
@@ -96,7 +96,7 @@ const MenuSistema = ({ tela }) => {
           {/* Agendar Agora */}
           <Menu.Item
             as={Link}
-            to="/consultarServicos"
+            to="/formAgendamento"
             className={styles.bookNowButton}
           >
             Agendar Agora
@@ -106,10 +106,11 @@ const MenuSistema = ({ tela }) => {
           {
             role === "ROLE_FUNCIONARIO_ADMIN" &&
           <Menu.Item
-            name='Administrador'
+            name='Dashboard'
             as={Link}
             to="/dashboard"
-            className={styles.menuItem}
+            className={styles.bookNowButton}
+
           />
           }
 
