@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { Form, Button, Grid, Icon } from "semantic-ui-react";
 import MenuAdmin from "../../components/MenuAdmin";
 import TopMenu from "../../components/TopMenu";
-import api from '../util/Api'; // importa sua instância configurada de axios
+import api from "../util/Api"; // importa sua instância configurada de axios
 import "semantic-ui-less/semantic.less";
-import { notifySuccess, notifyError } from '../util/Util';
-
+import { notifySuccess, notifyError } from "../util/Util";
 
 function CadastroBarbeiro() {
   const [nome, setNome] = useState("");
@@ -18,7 +17,7 @@ function CadastroBarbeiro() {
   const [atendimentoFim, setAtendimentoFim] = useState("");
   const [senha, setSenha] = useState("");
 
-  const [skills, setSkills] = useState([]); // selecionadas pelo usuário
+  const [skills, setSkills] = useState([]); // serviços selecionados pelo usuário
   const [skillOptions, setSkillOptions] = useState([]); // opções vindas do backend
 
   // Carrega os serviços do backend e popula o dropdown
@@ -34,7 +33,10 @@ function CadastroBarbeiro() {
         setSkillOptions(options);
       })
       .catch((error) => {
-        notifySuccess.error("Erro ao buscar serviços: " + (error.response?.data || error.message));
+        notifyError(
+          "Erro ao buscar serviços: " +
+            (error.response?.data || error.message)
+        );
       });
   }, []);
 
@@ -51,21 +53,27 @@ function CadastroBarbeiro() {
     setSenha("");
   }
 
-  function salvar() {
+  function validarCamposObrigatorios() {
     if (
-      !nome.trim() ||
-      !foneCelular.trim() ||
-      !email.trim() ||
-      !dataNascimento.trim() ||
-      !cpf.trim() ||
-      !endereco.trim() ||
-      !atendimentoInicio.trim() ||
-      !atendimentoFim.trim() ||
-      !senha.trim()
+      !nome ||
+      !foneCelular ||
+      !email ||
+      !dataNascimento ||
+      !cpf ||
+      !endereco ||
+      !atendimentoInicio ||
+      !atendimentoFim ||
+      !senha ||
+      skills.length === 0
     ) {
-      notifyError("Por favor, preencha todos os campos obrigatórios.");
-      return; // interrompe o envio se algum obrigatório estiver vazio
+      notifyError("Preencha todos os campos obrigatórios e selecione ao menos um serviço.");
+      return false;
     }
+    return true;
+  }
+
+  function salvar() {
+    if (!validarCamposObrigatorios()) return;
 
     const BarbeiroRequest = {
       nome,
@@ -76,8 +84,8 @@ function CadastroBarbeiro() {
       endereco,
       atendimentoInicio,
       atendimentoFim,
-      servicoIds: skills,
       senha,
+      servicoIds: skills, // Envia o array de serviços selecionados
     };
 
     api
@@ -87,13 +95,12 @@ function CadastroBarbeiro() {
         limparFormulario();
       })
       .catch((error) => {
-        notifySuccess.error(
+        notifyError(
           "Erro ao incluir o barbeiro: " +
             (error.response?.data || error.message)
         );
       });
   }
-
 
   const styles = {
     title: {
@@ -159,7 +166,7 @@ function CadastroBarbeiro() {
                     name="nome"
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
-                    placeholder="Nome do Cliente"
+                    placeholder="Nome do Barbeiro"
                     style={styles.input}
                   />
                 </Form.Field>
@@ -214,7 +221,7 @@ function CadastroBarbeiro() {
                 <Form.Field>
                   <label style={styles.label}>Email</label>
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -247,9 +254,9 @@ function CadastroBarbeiro() {
                 </Form.Group>
 
                 <Form.Field>
-                  <label style={styles.label}>Skills do Barbeiro</label>
+                  <label style={styles.label}>Serviços do Barbeiro</label>
                   <Form.Dropdown
-                    placeholder="Selecione as skills"
+                    placeholder="Selecione os serviços"
                     fluid
                     multiple
                     selection
@@ -264,7 +271,7 @@ function CadastroBarbeiro() {
                 <Form.Field>
                   <label style={styles.label}>Senha</label>
                   <input
-                    type="text"
+                    type="password"
                     name="senha"
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
@@ -289,8 +296,6 @@ function CadastroBarbeiro() {
           </Grid.Row>
         </Grid>
       </div>
-
-      {/* <ToastContainer /> Container para exibir as notificações */}
     </>
   );
 }
