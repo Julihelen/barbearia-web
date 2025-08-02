@@ -56,8 +56,8 @@ export default function FormLogin() {
                             style={{ color: '#bb872e' }}>
                             Informe suas credenciais de acesso
                         </Header>
-
-                    </div> <br /> <br />
+                    </div>
+                 <br /> <br />
 
                     <Form
                         style={{
@@ -137,6 +137,9 @@ export default function FormLogin() {
                                 }}
                             />
                         </Segment>
+                        <Message>
+                        Não é um usuário cadastrado? <Link to="/cadastroCliente"> Cadastre-se </Link>
+                    </Message>
                     </Form>
 
                 </Grid.Column>
