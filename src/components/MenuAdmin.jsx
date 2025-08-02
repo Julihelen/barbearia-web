@@ -1,6 +1,6 @@
-// MenuAdmin.jsx
 import React from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 const MenuAdmin = ({ activeItem = '', onMenuClick = () => {} }) => {
   return (
@@ -8,24 +8,25 @@ const MenuAdmin = ({ activeItem = '', onMenuClick = () => {} }) => {
       vertical
       fixed='left'
       inverted
-      style={{ height: '100vh', marginTop: '3em', width: '180px' }} // largura fixa aqui
+      style={{ height: '100vh', marginTop: '3em', width: '180px' }}
     >
       <Menu.Item
         name='dashboard'
         active={activeItem === 'dashboard'}
         onClick={() => onMenuClick('dashboard')}
-        as='a'
-        href="/dashboard"
+        as={Link}
+        to="/dashboard"
       >
         <Icon name='dashboard' />
         Dashboard
       </Menu.Item>
+
       <Menu.Item
         name='clientes'
         active={activeItem === 'clientes'}
         onClick={() => onMenuClick('clientes')}
-        as='a'
-        href="/listarClientes"
+        as={Link}
+        to="/listarClientes"
       >
         <Icon name='users' />
         Clientes
@@ -35,8 +36,8 @@ const MenuAdmin = ({ activeItem = '', onMenuClick = () => {} }) => {
         name='servicos'
         active={activeItem === 'servicos'}
         onClick={() => onMenuClick('servicos')}
-        as='a'
-        href="/CadastroServicos"
+        as={Link}
+        to="/CadastroServicos"
       >
         <Icon name='check' />
         Serviços
@@ -46,8 +47,8 @@ const MenuAdmin = ({ activeItem = '', onMenuClick = () => {} }) => {
         name='agendamentos'
         active={activeItem === 'agendamentos'}
         onClick={() => onMenuClick('agendamentos')}
-        as='a'
-        href="/agendamentos"
+        as={Link}
+        to="/agendamentos"
       >
         <Icon name='calendar alternate' />
         Agendamentos
@@ -57,8 +58,8 @@ const MenuAdmin = ({ activeItem = '', onMenuClick = () => {} }) => {
         name='Cadastrar Barbeiros'
         active={activeItem === 'barbeiros'}
         onClick={() => onMenuClick('barbeiros')}
-        as='a'
-        href="/formBarbeiro"
+        as={Link}
+        to="/cadastroBarbeiro"
       >
         <Icon name='users' />
         Cadastrar barbeiros
@@ -68,8 +69,8 @@ const MenuAdmin = ({ activeItem = '', onMenuClick = () => {} }) => {
         name='Barbeiros'
         active={activeItem === 'barbeiros'}
         onClick={() => onMenuClick('barbeiros')}
-        as='a'
-        href="/listarBarbeiros"
+        as={Link}
+        to="/listarBarbeiros"
       >
         <Icon name='users' />
         Barbeiros

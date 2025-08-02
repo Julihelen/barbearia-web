@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Header, Icon, Modal, Table, Form } from 'semantic-ui-react';
 import MenuSistema from "../../components/MenuAdmin";
+import api from '../util/Api'; //  importa sua instância configurada de axios
 
 export default function ListBarbeiro() {
     const [lista, setLista] = useState([]);
@@ -25,7 +25,7 @@ export default function ListBarbeiro() {
     }, []);
 
     function carregarLista() {
-        axios.get("http://localhost:8080/api/barbeiros")
+        api.get("/barbeiros")
             .then((response) => {
                 setLista(response.data);
             })
@@ -41,7 +41,7 @@ export default function ListBarbeiro() {
 
     async function remover() {
         try {
-            await axios.delete(`http://localhost:8080/api/barbeiros/${idRemover}`);
+            await api.delete(`/barbeiros/${idRemover}`);
             carregarLista();
         } catch (error) {
             console.error('Erro ao remover barbeiro');
@@ -83,7 +83,7 @@ export default function ListBarbeiro() {
                 endereco: enderecoEdit,
             };
 
-            await axios.put(`http://localhost:8080/api/barbeiros/${barbeiroEditar.id}`, barbeiroAtualizado);
+            await api.put(`/barbeiros/${barbeiroEditar.id}`, barbeiroAtualizado);
 
             carregarLista();
             setOpenEditModal(false);

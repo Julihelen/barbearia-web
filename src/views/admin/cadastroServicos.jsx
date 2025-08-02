@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button, Grid, Icon } from "semantic-ui-react";
 import MenuSistema from "../../components/MenuAdmin";
-import axios from "axios";
 import TopMenu from "../../components/TopMenu";
+import api from '../util/Api'; //  importa sua instância configurada de axios
 
 function CadastroServico() {
   const [duracaoPadrao, setDuracaoPadrao] = useState('');
@@ -10,13 +10,7 @@ function CadastroServico() {
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState("");
 
-  function formatarPreco(valor) {
-    if (!valor) return "";
-    return parseFloat(valor).toFixed(2); // garante duas casas decimais
-  }
-
   function salvar() {
-    const token = localStorage.getItem("token")
     const ServicosRequest = {
       titulo,
       descricao,
@@ -29,13 +23,7 @@ function CadastroServico() {
       return;
     }
 
-    axios
-      .post("http://localhost:8080/api/servicos", ServicosRequest, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      })
+    api.post("/servicos", ServicosRequest)
       .then(() => {
         alert("Serviço cadastrado com sucesso!");
         setTitulo("");
@@ -90,7 +78,7 @@ function CadastroServico() {
                     type="text"
                     name="preco"
                     value={preco}
-                    onChange={(e) => setPreco(e.target.value.replace(/[^\d.,]/g, ""))} 
+                    onChange={(e) => setPreco(e.target.value.replace(/[^\d.,]/g, ""))}
                     onBlur={(e) => setPreco(parseFloat(e.target.value.replace(",", "."))?.toFixed(2) || "")}
                     placeholder="Ex: 40,00"
                     style={styles.input}

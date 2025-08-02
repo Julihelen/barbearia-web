@@ -1,19 +1,18 @@
-import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Header, Icon, Modal, Table, Form } from 'semantic-ui-react';
 import TopMenu from '../../components/TopMenu';
 import MenuAdmin from '../../components/MenuAdmin';
+import api from '../util/Api'; //  importa sua instância configurada de axios
 
 export default function ListAgendamento() {
     const [lista, setLista] = useState([]);
-    const [openModal, setOpenModal] = useState(false); // Modal de exclusão
+    const [openModal, setOpenModal] = useState(false); 
     const [idRemover, setIdRemover] = useState();
 
-    const [openEditModal, setOpenEditModal] = useState(false); // Modal de edição
+    const [openEditModal, setOpenEditModal] = useState(false); 
     const [agendamentoEditando, setAgendamentoEditando] = useState(null);
 
-    // Campos do formulário de edição
     const [dataEdit, setDataEdit] = useState("");
     const [horaEdit, setHoraEdit] = useState("");
     const [observacoesEdit, setObservacoesEdit] = useState("");
@@ -22,10 +21,14 @@ export default function ListAgendamento() {
         carregarLista();
     }, []);
 
-    function carregarLista() {
-        axios.get("http://localhost:8080/api/agendamento")
-            .then((response) => setLista(response.data))
-            .catch((error) => console.error("Erro ao buscar agendamentos:", error));
+    // Agora usando `api` com JWT automático
+    async function carregarLista() {
+        try {
+            const response = await api.get("/agendamento");
+            setLista(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar agendamentos:", error);
+        }
     }
 
     function formatarData(dataParam) {
@@ -39,15 +42,15 @@ export default function ListAgendamento() {
         return horario.substring(0, 5);
     }
 
-    // Modal de exclusão
     function confirmaRemover(id) {
         setOpenModal(true);
         setIdRemover(id);
     }
 
+    // 🔥 Delete agora usa `api`
     async function remover() {
         try {
-            await axios.delete(`http://localhost:8080/api/agendamento/${idRemover}`);
+            await api.delete(`/agendamento/${idRemover}`);
             carregarLista();
         } catch (error) {
             console.error('Erro ao remover o agendamento:', error);
@@ -55,19 +58,19 @@ export default function ListAgendamento() {
         setOpenModal(false);
     }
 
-    // Modal de edição
     const abrirEditar = (agendamento) => {
         console.log("Agendamento selecionado para editar:", agendamento);
         setAgendamentoEditando(agendamento);
         setDataEdit(agendamento.dataAtendimento);
         setHoraEdit(agendamento.horario);
         setObservacoesEdit(agendamento.observacoes || "");
-        setOpenEditModal(true); // Abre o modal correto
+        setOpenEditModal(true);
     };
 
+    // 🔥 PUT agora usa `api`
     const salvarEdicao = async () => {
         const payload = {
-            id: agendamentoEditando.id, // 🔑 Adiciona o ID no corpo
+            id: agendamentoEditando.id,
             servicoId: agendamentoEditando.servico?.id,
             barbeiroId: agendamentoEditando.barbeiro?.id,
             dataAtendimento: dataEdit,
@@ -77,13 +80,14 @@ export default function ListAgendamento() {
 
         try {
             console.log("Payload enviado:", payload);
-            await axios.put(`http://localhost:8080/api/agendamento/${agendamentoEditando.id}`, payload);
+            await api.put(`/agendamento/${agendamentoEditando.id}`, payload);
             carregarLista();
             setOpenEditModal(false);
         } catch (error) {
             console.error("Erro ao salvar edição:", error.response || error);
         }
     };
+
     return (
         <div>
             <TopMenu />
@@ -158,7 +162,7 @@ export default function ListAgendamento() {
                 </Container>
             </div>
 
-            {/* Modal de confirmação para remover */}
+            {/* Modal de confirmação */}
             <Modal basic onClose={() => setOpenModal(false)} open={openModal}>
                 <Header icon>
                     <Icon name='trash' />
@@ -176,7 +180,7 @@ export default function ListAgendamento() {
                 </Modal.Actions>
             </Modal>
 
-            {/* Modal para editar agendamento */}
+            {/* Modal de edição */}
             <Modal open={openEditModal} onClose={() => setOpenEditModal(false)} size="small">
                 <Header icon="edit" content="Editar Agendamento" />
                 <Modal.Content>

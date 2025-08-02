@@ -1,9 +1,9 @@
-import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Header, Icon, Modal, Table, Form } from 'semantic-ui-react';
 import TopMenu from '../../components/TopMenu';
 import MenuAdmin from '../../components/MenuAdmin';
+import api from '../util/Api'; //  importa sua instância configurada de axios
 
 export default function ListarCliente() {
     const [lista, setLista] = useState([]);
@@ -24,9 +24,9 @@ export default function ListarCliente() {
     }, []);
 
     function carregarLista() {
-        axios.get("http://localhost:8080/api/cliente")
-            .then((response) => setLista(response.data))
-            .catch((error) => console.error("Erro ao buscar clientes:", error));
+        api.get("/cliente")
+            .then(response => setLista(response.data))
+            .catch(error => console.error("Erro ao buscar clientes:", error));
     }
 
     // Modal de exclusão
@@ -37,7 +37,7 @@ export default function ListarCliente() {
 
     async function remover() {
         try {
-            await axios.delete(`http://localhost:8080/api/cliente/${idRemover}`);
+            await api.delete(`/cliente/${idRemover}`);
             carregarLista();
         } catch (error) {
             console.error('Erro ao remover cliente:', error);
@@ -65,7 +65,7 @@ export default function ListarCliente() {
         };
 
         try {
-            await axios.put(`http://localhost:8080/api/cliente/${clienteEditando.id}`, payload);
+            await api.put(`/cliente/${clienteEditando.id}`, payload);
             carregarLista();
             setOpenEditModal(false);
         } catch (error) {

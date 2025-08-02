@@ -2,27 +2,29 @@ import { useState, useEffect } from "react";
 import { Form, Button, Grid, Icon } from "semantic-ui-react";
 import MenuAdmin from "../../components/MenuAdmin";
 import TopMenu from "../../components/TopMenu";
-import axios from "axios";
+import api from '../util/Api'; // importa sua instância configurada de axios
 import "semantic-ui-less/semantic.less";
+import { notifySuccess, notifyError } from '../util/Util';
+
 
 function CadastroBarbeiro() {
-  const [nome, setNome] = useState();
-  const [foneCelular, setFoneCelular] = useState();
-  const [email, setEmail] = useState();
-  const [dataNascimento, setDataNascimento] = useState();
-  const [cpf, setCpf] = useState();
-  const [endereco, setEndereco] = useState();
-  const [atendimentoInicio, setAtendimentoInicio] = useState();
-  const [atendimentoFim, setAtendimentoFim] = useState();
-  const [senha, setSenha] = useState();
+  const [nome, setNome] = useState("");
+  const [foneCelular, setFoneCelular] = useState("");
+  const [email, setEmail] = useState("");
+  const [dataNascimento, setDataNascimento] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [atendimentoInicio, setAtendimentoInicio] = useState("");
+  const [atendimentoFim, setAtendimentoFim] = useState("");
+  const [senha, setSenha] = useState("");
 
   const [skills, setSkills] = useState([]); // selecionadas pelo usuário
   const [skillOptions, setSkillOptions] = useState([]); // opções vindas do backend
 
   // Carrega os serviços do backend e popula o dropdown
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/servicos")
+    api
+      .get("/servicos")
       .then((response) => {
         const options = response.data.map((servico) => ({
           key: servico.id,
@@ -32,36 +34,66 @@ function CadastroBarbeiro() {
         setSkillOptions(options);
       })
       .catch((error) => {
-        console.error("Erro ao buscar serviços:", error);
+        notifySuccess.error("Erro ao buscar serviços: " + (error.response?.data || error.message));
       });
   }, []);
 
+  function limparFormulario() {
+    setNome("");
+    setFoneCelular("");
+    setEmail("");
+    setDataNascimento("");
+    setCpf("");
+    setEndereco("");
+    setAtendimentoInicio("");
+    setAtendimentoFim("");
+    setSkills([]);
+    setSenha("");
+  }
+
   function salvar() {
-    let BarbeiroRequest = {
-      nome: nome,
-      foneCelular: foneCelular,
-      email: email,
-      dataNascimento: dataNascimento,
-      cpf: cpf,
-      endereco: endereco,
-      atendimentoInicio: atendimentoInicio,
-      atendimentoFim: atendimentoFim,
-      servicoIds: skills, // envia IDs diretamente
-      senha: senha,
+    if (
+      !nome.trim() ||
+      !foneCelular.trim() ||
+      !email.trim() ||
+      !dataNascimento.trim() ||
+      !cpf.trim() ||
+      !endereco.trim() ||
+      !atendimentoInicio.trim() ||
+      !atendimentoFim.trim() ||
+      !senha.trim()
+    ) {
+      notifyError("Por favor, preencha todos os campos obrigatórios.");
+      return; // interrompe o envio se algum obrigatório estiver vazio
+    }
+
+    const BarbeiroRequest = {
+      nome,
+      foneCelular,
+      email,
+      dataNascimento,
+      cpf,
+      endereco,
+      atendimentoInicio,
+      atendimentoFim,
+      servicoIds: skills,
+      senha,
     };
 
-    axios
-      .post("http://localhost:8080/api/barbeiros", BarbeiroRequest)
+    api
+      .post("/barbeiros", BarbeiroRequest)
       .then(() => {
-        console.log("Barbeiro cadastrado com sucesso.");
+        notifySuccess("Barbeiro cadastrado com sucesso!");
+        limparFormulario();
       })
       .catch((error) => {
-        console.error(
-          "Erro ao incluir o barbeiro:",
-          error.response?.data || error.message
+        notifySuccess.error(
+          "Erro ao incluir o barbeiro: " +
+            (error.response?.data || error.message)
         );
       });
   }
+
 
   const styles = {
     title: {
@@ -257,6 +289,8 @@ function CadastroBarbeiro() {
           </Grid.Row>
         </Grid>
       </div>
+
+      {/* <ToastContainer /> Container para exibir as notificações */}
     </>
   );
 }
